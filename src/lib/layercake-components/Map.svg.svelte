@@ -5,7 +5,6 @@
 <script>
 	import { getContext } from 'svelte';
 	import { geoPath } from 'd3-geo';
-	import { feature } from 'topojson-client';
 
 	const { data, width, height, zGet, custom } = getContext('LayerCake');
 
@@ -28,23 +27,26 @@
 	export let features = undefined;
 
 	$: fitSizeRange = fixedAspectRatio ? [100, 100 / fixedAspectRatio] : [$width, $height];
-	$: left = $custom.bounds[0][0];
-	$: bottom = $custom.bounds[0][1];
-	$: right = $custom.bounds[1][0];
-	$: top = $custom.bounds[1][1];
+	// $: left = $custom.bounds[0][0];
+	// $: bottom = $custom.bounds[0][1];
+	// $: right = $custom.bounds[1][0];
+	// $: top = $custom.bounds[1][1];
 
-	$: projectionFn = projection().fitSize(fitSizeRange, {
-		type: 'Polygon',
-		coordinates: [
-			[
-				[left, bottom],
-				[right, bottom],
-				[right, top],
-				[left, top],
-				[left, bottom]
-			]
-		]
-	});
+	// $: boundsFeature = {
+	// 	type: 'Polygon',
+	// 	coordinates: [
+	// 		[
+	// 			[left, bottom],
+	// 			[right, bottom],
+	// 			[right, top],
+	// 			[left, top],
+	// 			[left, bottom]
+	// 		]
+	// 	]
+	// };
+
+	$: projectionFn = projection().fitSize(fitSizeRange, $data);
+	// $: projectionFn = projection().fitSize(fitSizeRange, boundsFeature);
 
 	$: geoPathFn = geoPath(projectionFn);
 </script>
