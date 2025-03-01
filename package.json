@@ -25,9 +25,9 @@
   "type": "module",
   "dependencies": {
     "@rollup/plugin-dsv": "^3.0.4",
-    "layercake": "^8.3.1",
-    "topojson-client": "^3.1.0",
     "d3-geo": "^3.1.1",
-    "d3-scale": "^4.0.2"
+    "d3-scale": "^4.0.2",
+    "layercake": "^8.3.1",
+    "topojson-client": "^3.1.0"
   }
 }
