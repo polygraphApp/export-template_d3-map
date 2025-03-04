@@ -1,6 +1,7 @@
 <script>
 	import * as topojson from 'topojson-client';
 	import { geoBounds } from 'd3-geo';
+	import { rewindFeatureCollection } from '@placemarkio/geojson-rewind';
 
 	import Map from '$lib/Map.svelte';
 
@@ -25,8 +26,9 @@
 		 */
 		const mapLayers = topodatas.map((topodata, i) => {
 			const topoLayerName = Object.keys(topodata.objects)[0];
+			const geojson = topojson.feature(topodata, topodata.objects[topoLayerName]);
 			return {
-				geojson: topojson.feature(topodata, topodata.objects[topoLayerName]),
+				geojson: rewindFeatureCollection(geojson, 'd3'),
 				style: styledatas[i]
 			};
 		});

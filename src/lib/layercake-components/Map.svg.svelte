@@ -27,26 +27,26 @@
 	export let features = undefined;
 
 	$: fitSizeRange = fixedAspectRatio ? [100, 100 / fixedAspectRatio] : [$width, $height];
-	// $: left = $custom.bounds[0][0];
-	// $: bottom = $custom.bounds[0][1];
-	// $: right = $custom.bounds[1][0];
-	// $: top = $custom.bounds[1][1];
+	$: left = $custom.bounds[0][0];
+	$: bottom = $custom.bounds[0][1];
+	$: right = $custom.bounds[1][0];
+	$: top = $custom.bounds[1][1];
 
-	// $: boundsFeature = {
-	// 	type: 'Polygon',
-	// 	coordinates: [
-	// 		[
-	// 			[left, bottom],
-	// 			[right, bottom],
-	// 			[right, top],
-	// 			[left, top],
-	// 			[left, bottom]
-	// 		]
-	// 	]
-	// };
+	$: boundsFeature = {
+		type: 'Polygon',
+		coordinates: [
+			[
+				[left, bottom],
+				[left, top],
+				[right, top],
+				[right, bottom],
+				[left, bottom]
+			]
+		]
+	};
 
-	$: projectionFn = projection().fitSize(fitSizeRange, $data);
-	// $: projectionFn = projection().fitSize(fitSizeRange, boundsFeature);
+	// $: projectionFn = projection().fitSize(fitSizeRange, $data);
+	$: projectionFn = projection().fitSize(fitSizeRange, boundsFeature);
 
 	$: geoPathFn = geoPath(projectionFn);
 </script>
@@ -61,6 +61,7 @@
 			stroke-width={strokeWidth}
 			d={geoPathFn(feature)}
 			role="tooltip"
+			fill-opacity="0.75"
 			onmouseenter={() => console.log(feature.properties)}
 		></path>
 	{/each}
