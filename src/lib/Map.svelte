@@ -17,40 +17,26 @@
 	const flatData = geojson.features.map(d => d.properties);
 </script>
 
-<div class="chart-container">
-	<LayerCake
-		data={geojson}
-		z={key}
-		zScale={domain && range ? scaleThreshold() : undefined}
-		zDomain={domain}
-		zRange={range}
-		{flatData}
-		custom={{ bounds }}
-		debug
-	>
-		{#if canvas}
-			<Canvas>
-				<MapCanvas {projection} {fill} stroke={outline} />
-			</Canvas>
-		{/if}
+<LayerCake
+	position="absolute"
+	data={geojson}
+	z={key}
+	zScale={domain && range ? scaleThreshold() : undefined}
+	zDomain={domain}
+	zRange={range}
+	{flatData}
+	custom={{ bounds }}
+	debug
+>
+	{#if canvas}
+		<Canvas>
+			<MapCanvas {projection} {fill} stroke={outline} />
+		</Canvas>
+	{/if}
 
-		{#if svg}
-			<Svg>
-				<MapSvg {projection} {fill} stroke={outline} />
-			</Svg>
-		{/if}
-	</LayerCake>
-</div>
-
-<style>
-	/*
-    The wrapper div needs to have an explicit width and height in CSS.
-    It can also be a flexbox child or CSS grid element.
-    The point being it needs dimensions since the <LayerCake> element will
-    expand to fill it.
-  */
-	.chart-container {
-		width: 100%;
-		height: 100%;
-	}
-</style>
+	{#if svg}
+		<Svg>
+			<MapSvg {projection} {fill} stroke={outline} />
+		</Svg>
+	{/if}
+</LayerCake>

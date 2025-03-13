@@ -53,9 +53,24 @@
 {#await loadData()}
 	<p>Loading...</p>
 {:then result}
-	{#each result.layers as { geojson, style }}
-		<Map {geojson} {style} bounds={result.bounds} />
-	{/each}
+	<div class="chart-container">
+		{#each result.layers as { geojson, style }}
+			<Map {geojson} {style} bounds={result.bounds} />
+		{/each}
+	</div>
 {:catch error}
 	<p>Error loading data: {error.message}</p>
 {/await}
+
+<style>
+	/*
+    The wrapper div needs to have an explicit width and height in CSS.
+    It can also be a flexbox child or CSS grid element.
+    The point being it needs dimensions since the <LayerCake> element will
+    expand to fill it.
+  */
+	.chart-container {
+		width: 100%;
+		height: 100%;
+	}
+</style>

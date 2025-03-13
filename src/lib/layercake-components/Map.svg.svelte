@@ -23,9 +23,6 @@
 	/** @type {Number} [strokeWidth=0.5] - The shape's stroke width. */
 	export let strokeWidth = 0.5;
 
-	/** @type {Array<Object>|undefined} [features] - A list of GeoJSON features. Use this if you want to draw a subset of the features in `$data` while keeping the zoom on the whole GeoJSON feature set. By default, it plots everything in `$data.features` if left unset. */
-	export let features = undefined;
-
 	$: fitSizeRange = fixedAspectRatio ? [100, 100 / fixedAspectRatio] : [$width, $height];
 	$: left = $custom.bounds[0][0];
 	$: bottom = $custom.bounds[0][1];
@@ -52,18 +49,44 @@
 </script>
 
 <g class="map-group" role="tooltip">
-	{#each features || $data.features as feature}
+	{#each $data.features as feature}
+		{console.log(feature)}
+		{#if feature.geometry.type.includes('Polygon')}
+			<path
+				class="feature-path"
+				class:linestring={feature.geometry.type.includes('LineString')}
+				class:polygon={feature.geometry.type.includes('Polygon')}
+				class:point={feature.geometry.type.includes('Point')}
+				fill={fill || $zGet(feature.properties)}
+				{stroke}
+				stroke-width={strokeWidth}
+				d={geoPathFn(feature)}
+				role="tooltip"
+				fill-opacity="0.75"
+				onmouseenter={() => console.log(feature.properties)}
+			></path>
+		{:else if feature.geometry.type.includes('LineString')}
+			<path
+				class="feature-path"
+				fill="none"
+				stroke={fill || $zGet(feature.properties)}
+				stroke-width="2"
+				d={geoPathFn(feature)}
+				role="tooltip"
+			></path>
+		{:else if feature.geometry.type.includes('Point')}
+			<circle
+				class="feature-path"
+				fill={fill || $zGet(feature.properties)}
+				{stroke}
+				stroke-width={strokeWidth}
+				cx={geoPathFn.centroid(feature)[0]}
+				cy={geoPathFn.centroid(feature)[1]}
+				r="5"
+				role="tooltip"
+			></circle>
+		{/if}
 		<!-- svelte-ignore a11y_mouse_events_have_key_events -->
-		<path
-			class="feature-path"
-			fill={fill || $zGet(feature.properties)}
-			{stroke}
-			stroke-width={strokeWidth}
-			d={geoPathFn(feature)}
-			role="tooltip"
-			fill-opacity="0.75"
-			onmouseenter={() => console.log(feature.properties)}
-		></path>
 	{/each}
 </g>
 
