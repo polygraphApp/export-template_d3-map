@@ -70,6 +70,7 @@
     expand to fill it.
   */
 	.chart-container {
+		position: relative;
 		width: 100%;
 		height: 100%;
 	}
