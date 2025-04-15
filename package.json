@@ -25,7 +25,7 @@
   "type": "module",
   "dependencies": {
     "@placemarkio/geojson-rewind": "^1.0.2",
-    "@rollup/plugin-dsv": "^3.0.4",
+    "@rollup/plugin-dsv": "^3.0.5",
     "d3-geo": "^3.1.1",
     "d3-scale": "^4.0.2",
     "layercake": "^8.4.3",
