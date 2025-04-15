@@ -6,10 +6,12 @@
 	<h1>Test gallery</h1>
 
 	<div class="container">
-		<div class="item"><MapLoader layers={['polygon-fill']} /></div>
+		<div class="item"><MapLoader layers={['polygon-singlecolor']} /></div>
 		<div class="item"><MapLoader layers={['polygon-choropleth']} /></div>
-		<div class="item"><MapLoader layers={['polygon-fill-canvas']} /></div>
+		<div class="item"><MapLoader layers={['polygon-singlecolor-canvas']} /></div>
 		<div class="item"><MapLoader layers={['polygon-choropleth-canvas']} /></div>
+
+		<div class="item"><MapLoader layers={['linestring-singlecolor']} /></div>
 	</div>
 </div>
 
