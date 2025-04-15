@@ -42,7 +42,6 @@
 		]
 	};
 
-	// $: projectionFn = projection().fitSize(fitSizeRange, $data);
 	$: projectionFn = projection().fitSize(fitSizeRange, boundsFeature);
 
 	$: geoPathFn = geoPath(projectionFn);
@@ -62,7 +61,6 @@
 				stroke-width={strokeWidth}
 				d={geoPathFn(feature)}
 				role="tooltip"
-				fill-opacity="0.75"
 				onmouseenter={() => console.log(feature.properties)}
 			></path>
 		{:else if feature.geometry.type.includes('LineString')}

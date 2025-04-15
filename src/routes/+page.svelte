@@ -1,9 +1,9 @@
 <script>
-	import LayeredMap from '$lib/LayeredMap.svelte';
+	import MapLoader from '$lib/MapLoader.svelte';
 	import layers from './map-layers.js';
 </script>
 
-<LayeredMap {layers} />
+<MapLoader {layers} />
 
 <style>
 	:global(body) {
