@@ -1,0 +1,7 @@
+{
+	"type": "line",
+	"svg": true,
+	"projection": "geoMercator",
+	"stroke": "#42bd00",
+	"fill": "#42bd00"
+}

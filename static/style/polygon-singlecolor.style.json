@@ -1,6 +1,6 @@
 {
 	"projection": "geoAlbersUsa",
-	"outline": "#000",
+	"stroke": "#000",
 	"fill": "#fc0",
 	"svg": true
 }

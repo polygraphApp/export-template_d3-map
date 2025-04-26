@@ -10,7 +10,7 @@
 		"#08519c",
 		"#08306b"
 	],
-	"outline": "#000",
+	"stroke": "#000",
 	"key": "CENSUSAREA",
 	"canvas": true
 }

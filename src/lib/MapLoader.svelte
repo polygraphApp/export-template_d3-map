@@ -53,7 +53,7 @@
 {#await loadData()}
 	<p>Loading...</p>
 {:then result}
-	<div class="chart-container">
+	<div class="chart-container" data-label={layers.join(', ')}>
 		{#each result.layers as { geojson, style }}
 			<Map {geojson} {style} bounds={result.bounds} />
 		{/each}

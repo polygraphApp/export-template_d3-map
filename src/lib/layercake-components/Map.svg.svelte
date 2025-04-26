@@ -49,7 +49,6 @@
 
 <g class="map-group" role="tooltip">
 	{#each $data.features as feature}
-		{console.log(feature)}
 		{#if feature.geometry.type.includes('Polygon')}
 			<path
 				class="feature-path"
