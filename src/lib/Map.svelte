@@ -12,6 +12,7 @@
 	 * @property {string} [fill] - For single-color maps, the fill color
 	 * @property {string} [stroke] - The stroke color for the map features.
 	 * @property {number} [strokeWidth] - The width of the stroke for the map features.
+	 * @property {number} [radius] - The radius for circle features.
 	 * @property {string} [key] - For choropleth maps, the field to color by
 	 * @property {any[]} [domain] - The domain for the color scale.
 	 * @property {any[]} [range] - The range for the color scale.
@@ -26,7 +27,7 @@
   }} */
 	let { geojson, style, bounds } = $props();
 
-	const { fill, stroke, strokeWidth, domain, range } = style;
+	const { fill, stroke, strokeWidth, radius, domain, range } = style;
 
 	const projection = d3Geo[style.projection];
 
@@ -52,13 +53,13 @@
 >
 	{#if style.canvas}
 		<Canvas>
-			<MapCanvas {projection} {fill} {stroke} {strokeWidth} />
+			<MapCanvas {projection} {fill} {stroke} {strokeWidth} {radius} />
 		</Canvas>
 	{/if}
 
 	{#if style.svg}
 		<Svg>
-			<MapSvg {projection} {fill} {stroke} {strokeWidth} />
+			<MapSvg {projection} {fill} {stroke} {strokeWidth} {radius} />
 		</Svg>
 	{/if}
 </LayerCake>

@@ -11,11 +11,13 @@
 		<div class="item"><MapLoader layers={['polygon-singlecolor-canvas']} /></div>
 		<div class="item"><MapLoader layers={['polygon-choropleth-canvas']} /></div>
 
-		<!-- <div class="item"><MapLoader layers={['linestring-singlecolor']} /></div> -->
 		<div class="item"><MapLoader layers={['linesegments-singlecolor']} /></div>
 		<div class="item"><MapLoader layers={['linesegments-choropleth']} /></div>
 		<div class="item"><MapLoader layers={['linesegments-singlecolor-canvas']} /></div>
 		<div class="item"><MapLoader layers={['linesegments-choropleth-canvas']} /></div>
+
+		<div class="item"><MapLoader layers={['circle-singlecolor']} /></div>
+		<div class="item"><MapLoader layers={['circle-singlecolor-canvas']} /></div>
 	</div>
 </div>
 

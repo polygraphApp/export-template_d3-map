@@ -1,0 +1,7 @@
+{
+	"type": "circle",
+	"svg": true,
+	"projection": "geoMercator",
+	"outline": "#000",
+	"radius": 5
+}

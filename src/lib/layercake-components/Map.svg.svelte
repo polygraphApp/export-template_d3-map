@@ -23,6 +23,9 @@
 	/** @type {Number} [strokeWidth=0.5] - The shape's stroke width. */
 	export let strokeWidth = 0.5;
 
+	/** @type {Number} [radius] - The shape's stroke width. */
+	export let radius = undefined;
+
 	$: fitSizeRange = fixedAspectRatio ? [100, 100 / fixedAspectRatio] : [$width, $height];
 	$: left = $custom.bounds[0][0];
 	$: bottom = $custom.bounds[0][1];
@@ -71,7 +74,7 @@
 				d={geoPathFn(feature)}
 				role="tooltip"
 			></path>
-		{:else if feature.geometry.type.includes('Point')}
+		{:else if feature.geometry.type.includes('Point') && typeof radius === 'number'}
 			<circle
 				class="feature-path"
 				fill={fill || $zGet(feature.properties)}
@@ -79,7 +82,7 @@
 				stroke-width={strokeWidth}
 				cx={geoPathFn.centroid(feature)[0]}
 				cy={geoPathFn.centroid(feature)[1]}
-				r="5"
+				r={radius}
 				role="tooltip"
 			></circle>
 		{/if}

@@ -4,6 +4,7 @@
 	"projection": "geoMercator",
 	"strokeWidth": 2,
 	"key": "x_point",
+	"radius": 5,
 	"domain": [
 		-158.109973806952,
 		-151.599945068626,

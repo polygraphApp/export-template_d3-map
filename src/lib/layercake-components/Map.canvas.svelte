@@ -7,18 +7,21 @@
 	import { scaleCanvas } from 'layercake';
 	import { geoPath } from 'd3-geo';
 
-	const { data, width, height, zGet, custom } = getContext('LayerCake');
+	const { data, width, height, config, zGet, custom } = getContext('LayerCake');
 
 	const { ctx } = getContext('canvas');
 
 	/** @type {Function} projection - A D3 projection function. Pass this in as an uncalled function, e.g. `projection={geoAlbersUsa}`. */
 	export let projection;
 
-	/** @type {String} [stroke='#ccc'] - The shape's stroke color. */
-	export let stroke = undefined;
+	/** @type {String} [stroke='#333'] - The shape's stroke color. */
+	export let stroke = '#333';
 
 	/** @type {Number} [strokeWidth=0.5] - The shape's stroke width. */
 	export let strokeWidth = 0.5;
+
+	/** @type {Number} [radius] - The circle's radius. */
+	export let radius = undefined;
 
 	/** @type {String|undefined} [fill] - The shape's fill color. By default, the fill will be determined by the z-scale, unless this prop is set. */
 	export let fill = undefined;
@@ -64,16 +67,25 @@
 				if (feature.geometry.type.includes('Polygon')) {
 					$ctx.fillStyle = fill || $zGet(feature.properties);
 					$ctx.fill();
-				} else if (feature.geometry.type.includes('Point')) {
+				} else if (feature.geometry.type.includes('Point') && typeof radius === 'number') {
 					// For points, we can draw a circle
 					const coords = projectionFn(feature.geometry.coordinates);
-					$ctx.arc(coords[0], coords[1], strokeWidth / 2, 0, Math.PI * 2);
+					$ctx.arc(coords[0], coords[1], radius, 0, Math.PI * 2, false);
 					$ctx.fillStyle = fill || $zGet(feature.properties);
 					$ctx.fill();
 				}
 
+				if (feature.geometry.type.includes('LineString')) {
+					if ($config.z) {
+						$ctx.strokeStyle = $zGet(feature.properties);
+					} else {
+						$ctx.strokeStyle = stroke;
+					}
+				} else {
+					// For polygons, we use the stroke color
+					$ctx.strokeStyle = stroke;
+				}
 				$ctx.lineWidth = strokeWidth;
-				$ctx.strokeStyle = stroke || $zGet(feature.properties);
 				$ctx.stroke();
 			});
 		}
