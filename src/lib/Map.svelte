@@ -11,6 +11,7 @@
 	 * @property {keyof typeof import('d3-geo')} projection - The D3 projection to use (e.g., 'geoMercator', 'geoAlbersUsa').
 	 * @property {string} [fill] - For single-color maps, the fill color
 	 * @property {string} [stroke] - The stroke color for the map features.
+	 * @property {number} [strokeWidth] - The width of the stroke for the map features.
 	 * @property {string} [key] - For choropleth maps, the field to color by
 	 * @property {any[]} [domain] - The domain for the color scale.
 	 * @property {any[]} [range] - The range for the color scale.
@@ -25,7 +26,7 @@
   }} */
 	let { geojson, style, bounds } = $props();
 
-	const { fill, stroke, domain, range } = style;
+	const { fill, stroke, strokeWidth, domain, range } = style;
 
 	const projection = d3Geo[style.projection];
 
@@ -51,13 +52,13 @@
 >
 	{#if style.canvas}
 		<Canvas>
-			<MapCanvas {projection} {fill} {stroke} />
+			<MapCanvas {projection} {fill} {stroke} {strokeWidth} />
 		</Canvas>
 	{/if}
 
 	{#if style.svg}
 		<Svg>
-			<MapSvg {projection} {fill} {stroke} />
+			<MapSvg {projection} {fill} {stroke} {strokeWidth} />
 		</Svg>
 	{/if}
 </LayerCake>

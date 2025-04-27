@@ -67,7 +67,7 @@
 				class="feature-path"
 				fill="none"
 				stroke={fill || $zGet(feature.properties)}
-				stroke-width="2"
+				stroke-width={strokeWidth}
 				d={geoPathFn(feature)}
 				role="tooltip"
 			></path>

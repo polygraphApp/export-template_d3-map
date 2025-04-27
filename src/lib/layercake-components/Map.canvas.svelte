@@ -15,7 +15,7 @@
 	export let projection;
 
 	/** @type {String} [stroke='#ccc'] - The shape's stroke color. */
-	export let stroke = '#ccc';
+	export let stroke = undefined;
 
 	/** @type {Number} [strokeWidth=0.5] - The shape's stroke width. */
 	export let strokeWidth = 0.5;
@@ -61,11 +61,19 @@
 				geoPathFn.context($ctx);
 				geoPathFn(feature);
 
-				$ctx.fillStyle = fill || $zGet(feature.properties);
-				$ctx.fill();
+				if (feature.geometry.type.includes('Polygon')) {
+					$ctx.fillStyle = fill || $zGet(feature.properties);
+					$ctx.fill();
+				} else if (feature.geometry.type.includes('Point')) {
+					// For points, we can draw a circle
+					const coords = projectionFn(feature.geometry.coordinates);
+					$ctx.arc(coords[0], coords[1], strokeWidth / 2, 0, Math.PI * 2);
+					$ctx.fillStyle = fill || $zGet(feature.properties);
+					$ctx.fill();
+				}
 
 				$ctx.lineWidth = strokeWidth;
-				$ctx.strokeStyle = stroke;
+				$ctx.strokeStyle = stroke || $zGet(feature.properties);
 				$ctx.stroke();
 			});
 		}

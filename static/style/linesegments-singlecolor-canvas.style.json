@@ -1,6 +1,6 @@
 {
 	"type": "line",
-	"svg": true,
+	"canvas": true,
 	"projection": "geoMercator",
 	"strokeWidth": 2,
 	"stroke": "#42bd00",
