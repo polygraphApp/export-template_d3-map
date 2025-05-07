@@ -8,31 +8,26 @@
 
 	const { data, width, height, zGet, custom } = getContext('LayerCake');
 
-	/** @type {Function} projection - A D3 projection function. Pass this in as an uncalled function, e.g. `projection={geoAlbersUsa}`. */
-	export let projection;
+	/**
+	 * @type {{
+	 *  type: 'polygon' | 'line' | 'point',
+	 *  projection: () => import('d3-geo').GeoProjection,
+	 *  paint: import('../types.js').SimplePolygon | import('../types.js').ChoroplethPolygon | import('../types.js').SimpleLine | import('../types.js').ChoroplethLine | import('../types.js').SimplePoint | import('../types.js').ChoroplethPoint | import('../types.js').SimpleDynamicPoint | import('../types.js').ChoroplethDynamicPoint,
+	 *  fixedAspectRatio?: number
+	 * }}
+	 */
+	let { type, projection, paint, fixedAspectRatio = undefined } = $props();
 
-	/** @type {Number|undefined} [fixedAspectRatio] - By default, the map fills to fit the $width and $height. If instead you want a fixed-aspect ratio, like for a server-side rendered map, set that here. */
-	export let fixedAspectRatio = undefined;
+	/** @type {[number, number]} */
+	let fitSizeRange = $derived(fixedAspectRatio ? [100, 100 / fixedAspectRatio] : [$width, $height]);
 
-	/** @type {String|undefined} [fill] - The shape's fill color. By default, the fill will be determined by the z-scale, unless this prop is set. */
-	export let fill = undefined;
+	let left = $derived($custom.bounds[0][0]);
+	let bottom = $derived($custom.bounds[0][1]);
+	let right = $derived($custom.bounds[1][0]);
+	let top = $derived($custom.bounds[1][1]);
 
-	/** @type {String} [stroke='#333'] - The shape's stroke color. */
-	export let stroke = '#333';
-
-	/** @type {Number} [strokeWidth=0.5] - The shape's stroke width. */
-	export let strokeWidth = 0.5;
-
-	/** @type {Number} [radius] - The shape's stroke width. */
-	export let radius = undefined;
-
-	$: fitSizeRange = fixedAspectRatio ? [100, 100 / fixedAspectRatio] : [$width, $height];
-	$: left = $custom.bounds[0][0];
-	$: bottom = $custom.bounds[0][1];
-	$: right = $custom.bounds[1][0];
-	$: top = $custom.bounds[1][1];
-
-	$: boundsFeature = {
+	/** @type {import('geojson').Geometry} */
+	let boundsFeature = $derived({
 		type: 'Polygon',
 		coordinates: [
 			[
@@ -43,21 +38,18 @@
 				[left, bottom]
 			]
 		]
-	};
+	});
 
-	$: projectionFn = projection().fitSize(fitSizeRange, boundsFeature);
-
-	$: geoPathFn = geoPath(projectionFn);
+	let projectionFn = $derived(projection().fitSize(fitSizeRange, boundsFeature));
+	let geoPathFn = $derived(geoPath(projectionFn));
 </script>
 
 <g class="map-group" role="tooltip">
-	{#each $data.features as feature}
-		{#if feature.geometry.type.includes('Polygon')}
+	<!-- Polygons -->
+	{#if type === 'polygon'}
+		{#each $data.features as feature}
 			<path
 				class="feature-path"
-				class:linestring={feature.geometry.type.includes('LineString')}
-				class:polygon={feature.geometry.type.includes('Polygon')}
-				class:point={feature.geometry.type.includes('Point')}
 				fill={fill || $zGet(feature.properties)}
 				{stroke}
 				stroke-width={strokeWidth}
@@ -65,7 +57,10 @@
 				role="tooltip"
 				onmouseenter={() => console.log(feature.properties)}
 			></path>
-		{:else if feature.geometry.type.includes('LineString')}
+		{/each}
+		<!-- Lines -->
+	{:else if type === 'line'}
+		{#each $data.features as feature}
 			<path
 				class="feature-path"
 				fill="none"
@@ -74,7 +69,10 @@
 				d={geoPathFn(feature)}
 				role="tooltip"
 			></path>
-		{:else if feature.geometry.type.includes('Point') && typeof radius === 'number'}
+		{/each}
+		<!-- Points -->
+	{:else if type === 'point'}
+		{#each $data.features as feature}
 			<circle
 				class="feature-path"
 				fill={fill || $zGet(feature.properties)}
@@ -85,9 +83,8 @@
 				r={radius}
 				role="tooltip"
 			></circle>
-		{/if}
-		<!-- svelte-ignore a11y_mouse_events_have_key_events -->
-	{/each}
+		{/each}
+	{/if}
 </g>
 
 <style>

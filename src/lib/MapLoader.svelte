@@ -27,6 +27,13 @@
 		const mapLayers = topodatas.map((topodata, i) => {
 			const topoLayerName = Object.keys(topodata.objects)[0];
 			const geojson = topojson.feature(topodata, topodata.objects[topoLayerName]);
+
+			/**
+			 * @type {{
+			 * 	geojson: import('geojson').FeatureCollection,
+			 * 	style: import('./types.js').StyleConfig
+			 * }}
+			 */
 			return {
 				geojson: rewindFeatureCollection(geojson, 'd3'),
 				style: styledatas[i]

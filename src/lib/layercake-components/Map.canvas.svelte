@@ -67,26 +67,30 @@
 				if (feature.geometry.type.includes('Polygon')) {
 					$ctx.fillStyle = fill || $zGet(feature.properties);
 					$ctx.fill();
+
+					$ctx.strokeStyle = stroke;
+					$ctx.lineWidth = strokeWidth;
+					$ctx.stroke();
 				} else if (feature.geometry.type.includes('Point') && typeof radius === 'number') {
 					// For points, we can draw a circle
 					const coords = projectionFn(feature.geometry.coordinates);
 					$ctx.arc(coords[0], coords[1], radius, 0, Math.PI * 2, false);
 					$ctx.fillStyle = fill || $zGet(feature.properties);
 					$ctx.fill();
-				}
 
-				if (feature.geometry.type.includes('LineString')) {
+					$ctx.strokeStyle = stroke;
+					$ctx.lineWidth = strokeWidth;
+					$ctx.stroke();
+				} else if (feature.geometry.type.includes('LineString')) {
 					if ($config.z) {
 						$ctx.strokeStyle = $zGet(feature.properties);
 					} else {
 						$ctx.strokeStyle = stroke;
 					}
-				} else {
-					// For polygons, we use the stroke color
-					$ctx.strokeStyle = stroke;
+
+					$ctx.lineWidth = strokeWidth;
+					$ctx.stroke();
 				}
-				$ctx.lineWidth = strokeWidth;
-				$ctx.stroke();
 			});
 		}
 	}
