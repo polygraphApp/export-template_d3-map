@@ -1,0 +1,7 @@
+{
+	"type": "circle",
+	"canvas": true,
+	"projection": "geoAlbersUsa",
+	"fill": "#a000eb",
+	"radius": 5
+}

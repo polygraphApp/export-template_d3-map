@@ -1,29 +1,15 @@
 <script>
-	import MapLoader2 from '$lib/MapLoader2.svelte';
+	import MapLoader from '$lib/MapLoader.svelte';
 
-	import MapPolygonSimple from '$lib/MapPolygonSimple.svelte';
-
-	/** @typedef {import('topojson-specification').Topology} */
-	import usStates from './_data/topojson/us-states.json';
-
-	/** @typedef {import('$lib/types.js').StyleConfig} */
-	import polygonSingleColor from './_data/style/polygon-singlecolor.style.json';
+	import usStates from './_data/us-states.topojson';
 </script>
 
 <div class="wrapper">
 	<h1>Gallery</h1>
 
 	<div class="container">
-		<div class="item">
-			<MapLoader2 layers={[{ topodata: usStates, style: polygonSingleColor }]}>
-				{#snippet children(bounds, layers)}
-					{#each layers as { geojson, style }}
-						<MapPolygonSimple {bounds} {geojson} {style} />
-					{/each}
-				{/snippet}
-			</MapLoader2>
-		</div>
-		<!-- <div class="item"><MapLoader layers={['polygon-choropleth']} /></div>
+		<div class="item"><MapLoader layers={['polygon-singlecolor']} /></div>
+		<div class="item"><MapLoader layers={['polygon-choropleth']} /></div>
 		<div class="item"><MapLoader layers={['polygon-singlecolor-canvas']} /></div>
 		<div class="item"><MapLoader layers={['polygon-choropleth-canvas']} /></div>
 
@@ -33,7 +19,7 @@
 		<div class="item"><MapLoader layers={['linesegments-choropleth-canvas']} /></div>
 
 		<div class="item"><MapLoader layers={['point-singlecolor']} /></div>
-		<div class="item"><MapLoader layers={['point-singlecolor-canvas']} /></div> -->
+		<div class="item"><MapLoader layers={['point-singlecolor-canvas']} /></div>
 		<!-- <div class="item"><MapLoader layers={['point-choropleth']} /></div>
 		<div class="item"><MapLoader layers={['point-choropleth-canvas']} /></div> -->
 	</div>
@@ -62,7 +48,6 @@
 		height: 300px;
 		border: 1px solid #ccc;
 		border-radius: 5px;
-		position: relative;
 	}
 	.item :global(.chart-container):before {
 		content: attr(data-label);

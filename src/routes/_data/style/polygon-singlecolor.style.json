@@ -1,0 +1,9 @@
+{
+	"type": "polygon",
+	"projection": "geoAlbersUsa",
+	"renderer": "svg",
+	"paint": {
+		"stroke": "#000",
+		"fill": "#fc0"
+	}
+}
