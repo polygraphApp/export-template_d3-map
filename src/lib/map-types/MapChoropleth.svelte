@@ -3,12 +3,12 @@
 	import * as d3Geo from 'd3-geo';
 	// import { scaleThreshold } from 'd3-scale';
 
-	import MapSvg from './layercake-components/Map.svg.svelte';
-	import MapCanvas from './layercake-components/Map.canvas.svelte';
+	import MapSvg from '../layercake-components/Map.svg.svelte';
+	import MapCanvas from '../layercake-components/Map.canvas.svelte';
 
 	/** @type {{
     geojson: import('geojson').FeatureCollection,
-    style: import('./types.js').StyleConfig,
+    style: import('../types.js').StyleConfig,
 		bounds: any[][]
   }} */
 	let { geojson, style, bounds } = $props();

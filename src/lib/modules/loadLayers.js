@@ -1,19 +1,16 @@
-<script>
-	import * as topojson from 'topojson-client';
-	import { geoBounds } from 'd3-geo';
-	import { rewindFeatureCollection } from '@placemarkio/geojson-rewind';
-
-	/**
-	 * @type {{
-	 * layers: Array<{
-	 * 	topodata: import('topojson-specification').Topology,
-	 * 	style: import('./types.js').StyleConfig
-	 * }>
-	 * children: (bounds: [number, number, number, number], layers: Array<{ geojson: import('geojson').FeatureCollection, style: import('./types.js').StyleConfig }>) => any
-	 * }}
-	 */
-	let { layers, children } = $props();
-
+import * as topojson from 'topojson-client';
+import { geoBounds } from 'd3-geo';
+import { rewindFeatureCollection } from '@placemarkio/geojson-rewind';
+/**
+ *
+ * @param {Array<{
+ * 	topodata: import('topojson-specification').Topology,
+ * 	style: import('../types.js').StyleConfig
+ * }>} layers
+ * @returns {{bounds: [[number, number], [number, number]], layers: Array<{ geojson: import('geojson').FeatureCollection, style: import('../types.js').StyleConfig }>}}
+ * }}
+ */
+export default function loadLayers(layers) {
 	const mapLayers = layers.map(({ topodata, style }) => {
 		const topoLayerName = Object.keys(topodata.objects)[0];
 		const geojson = topojson.feature(topodata, topodata.objects[topoLayerName]);
@@ -21,7 +18,7 @@
 		/**
 		 * @type {{
 		 * 	geojson: import('geojson').FeatureCollection,
-		 * 	style: import('./types.js').StyleConfig
+		 * 	style: import('../types.js').StyleConfig
 		 * }}
 		 */
 		return {
@@ -40,6 +37,9 @@
 		)
 	};
 	const fullBounds = geoBounds(combinedGeoJSON);
-</script>
 
-{@render children(fullBounds, mapLayers)}
+	return {
+		bounds: fullBounds,
+		layers: mapLayers
+	};
+}
