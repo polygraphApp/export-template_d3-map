@@ -15,7 +15,10 @@
 
 	const allMapExamples = [
 		[{ topodata: usStates, style: polygonSingleColor }],
-		[{ topodata: usStates, style: polygonChoropleth }]
+		[{ topodata: usStates, style: polygonChoropleth }],
+		[{ topodata: usStates, style: { ...polygonSingleColor, renderer: 'canvas' } }],
+		[{ topodata: usStates, style: { ...polygonChoropleth, renderer: 'canvas' } }]
+
 		// @ts-ignore
 	].map(loadLayers);
 </script>
@@ -63,7 +66,7 @@
 		height: 100%;
 	}
 	.item {
-		width: 300px;
+		width: 23%;
 		height: 300px;
 		border: 1px solid #ccc;
 		border-radius: 5px;

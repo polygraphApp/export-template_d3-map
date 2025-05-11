@@ -6,6 +6,8 @@
 	// import MapLineSvg from '$lib/layercake-components/MapLine.svg.svelte';
 	// import MapPointSvg from '$lib/layercake-components/MapPoint.svg.svelte';
 
+	import MapPolygonCanvas from '$lib/layercake-components/canvas/MapPolygon.canvas.svelte';
+
 	/** @type {{
     geojson: import('geojson').FeatureCollection,
     style: import('../types.js').StyleConfig,
@@ -42,8 +44,15 @@
 			{/if}
 		</Svg>
 	{:else if style.renderer === 'canvas'}
-		<!-- <Canvas>
-			<MapCanvas type={style.type} {projection} {paint} />
-		</Canvas> -->
+		<Canvas>
+			<MapPolygonCanvas
+				{projection}
+				fill={style.paint.fill}
+				stroke={style.paint.stroke}
+				strokeOpacity={style.paint.strokeOpacity}
+				strokeWidth={style.paint.strokeWidth}
+				fillOpacity={style.paint.fillOpacity}
+			/>
+		</Canvas>
 	{/if}
 </LayerCake>

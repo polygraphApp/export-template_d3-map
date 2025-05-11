@@ -44,7 +44,7 @@
 		height: 100%;
 	}
 	.item {
-		width: 300px;
+		width: 25%;
 		height: 300px;
 		border: 1px solid #ccc;
 		border-radius: 5px;
