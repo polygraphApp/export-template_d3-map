@@ -3,7 +3,14 @@
  * @property {'polygon'|'line'|'point'} type - The type of map feature to render.
  * @property {keyof typeof import('d3-geo')} projection - The D3 projection to use (e.g., 'geoMercator', 'geoAlbersUsa').
  * @property {'canvas'|'svg'} renderer - The renderer to use for the map.
- * @property {SimplePolygon|ChoroplethPolygon|SimpleLine|ChoroplethLine|SimplePoint|ChoropolethPoint|SimpleDynamicPoint|ChoroplethDynamicPoint} paint
+ * @property {SimplePolygon|ChoroplethPolygon|SimpleLine|ChoroplethLine|SimplePoint|ChoroplethPoint|SimpleDynamicPoint|ChoroplethDynamicPoint} paint
+ */
+
+/**
+ * @typedef {Object} ChoroplethBase
+ * @property {string} fillKey - For choropleth maps, the field to color by
+ * @property {any[]} fillDomain - The domain for the color scale.
+ * @property {any[]} fillRange - The range for the color scale.
  */
 
 /**

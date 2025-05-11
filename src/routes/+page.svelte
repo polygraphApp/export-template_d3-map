@@ -10,11 +10,12 @@
 	import usStates from './_data/topojson/us-states.json';
 	/** @typedef {import('$lib/types.js').StyleConfig} */
 	import polygonSingleColor from './_data/style/polygon-singlecolor.style.json';
+	/** @typedef {import('$lib/types.js').StyleConfig} */
+	import polygonChoropleth from './_data/style/polygon-choropleth.style.json';
 
 	const allMapExamples = [
 		[{ topodata: usStates, style: polygonSingleColor }],
-		[{ topodata: usStates, style: polygonSingleColor }],
-		[{ topodata: usStates, style: polygonSingleColor }]
+		[{ topodata: usStates, style: polygonChoropleth }]
 		// @ts-ignore
 	].map(loadLayers);
 </script>

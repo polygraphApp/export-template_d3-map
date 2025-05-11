@@ -2,7 +2,7 @@
 	import { LayerCake, Svg, Canvas } from 'layercake';
 	import * as d3Geo from 'd3-geo';
 
-	import MapPolygonSvg from '$lib/layercake-components/MapPolygon.svg.svelte';
+	import MapPolygonSvg from '$lib/layercake-components/svg/MapPolygon.svg.svelte';
 	// import MapLineSvg from '$lib/layercake-components/MapLine.svg.svelte';
 	// import MapPointSvg from '$lib/layercake-components/MapPoint.svg.svelte';
 
@@ -13,32 +13,27 @@
   }} */
 	let { geojson, style, bounds } = $props();
 
-	let { paint } = $derived(style);
-
 	/** @type {() => import('d3-geo').GeoProjection} */
 	// @ts-ignore
 	const projection = d3Geo[style.projection];
-
-	/**
-	 * Create a flat array of objects that LayerCake can use to measure
-	 * extents for the color scale
-	 */
-	const flatData = geojson.features
-		.map(d => d.properties)
-		.filter(properties => properties !== null);
 </script>
 
-<LayerCake position="absolute" data={geojson} {flatData} custom={{ bounds }} debug>
+<LayerCake
+	position="absolute"
+	data={geojson}
+	flatData={geojson.features.filter(properties => properties !== null).map(d => d.properties)}
+	custom={{ bounds }}
+>
 	{#if style.renderer === 'svg'}
 		<Svg>
 			{#if style.type === 'polygon'}
 				<MapPolygonSvg
 					{projection}
-					fill={paint.fill}
-					stroke={paint.stroke}
-					strokeOpacity={paint.strokeOpacity}
-					strokeWidth={paint.strokeWidth}
-					fillOpacity={paint.fillOpacity}
+					fill={style.paint.fill}
+					stroke={style.paint.stroke}
+					strokeOpacity={style.paint.strokeOpacity}
+					strokeWidth={style.paint.strokeWidth}
+					fillOpacity={style.paint.fillOpacity}
 				/>
 			{:else if style.type === 'line'}
 				<!-- <MapLineSvg {projection} /> -->

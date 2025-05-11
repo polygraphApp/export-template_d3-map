@@ -53,7 +53,7 @@
 	{#each $data.features as feature}
 		<path
 			class="feature-path"
-			fill={$config.z ? zGet(feature) : fill}
+			fill={$config.z ? $zGet(feature.properties) : fill}
 			fill-opacity={fillOpacity}
 			{stroke}
 			stroke-width={strokeWidth}
