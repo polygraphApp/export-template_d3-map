@@ -3,8 +3,8 @@
 	import * as d3Geo from 'd3-geo';
 	// import { scaleThreshold } from 'd3-scale';
 
-	import MapSvg from '../layercake-components/Map.svg.svelte';
-	import MapCanvas from '../layercake-components/Map.canvas.svelte';
+	// import MapSvg from '../layercake-components/Map.svg.svelte';
+	// import MapCanvas from '../layercake-components/Map.canvas.svelte';
 
 	/** @type {{
     geojson: import('geojson').FeatureCollection,
@@ -31,7 +31,7 @@
 <LayerCake position="absolute" data={geojson} {flatData} custom={{ bounds }} debug>
 	{#if style.renderer === 'svg'}
 		<Svg>
-			<MapSvg type={style.type} {projection} {paint} />
+			<!-- <MapSvg type={style.type} {projection} {paint} /> -->
 		</Svg>
 	{:else if style.renderer === 'canvas'}
 		<!-- <Canvas>

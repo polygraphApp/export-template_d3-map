@@ -2,8 +2,9 @@
 	import { LayerCake, Svg, Canvas } from 'layercake';
 	import * as d3Geo from 'd3-geo';
 
-	import MapSvg from '../layercake-components/Map.svg.svelte';
-	import MapCanvas from '../layercake-components/Map.canvas.svelte';
+	import MapPolygonSvg from '$lib/layercake-components/MapPolygon.svg.svelte';
+	// import MapLineSvg from '$lib/layercake-components/MapLine.svg.svelte';
+	// import MapPointSvg from '$lib/layercake-components/MapPoint.svg.svelte';
 
 	/** @type {{
     geojson: import('geojson').FeatureCollection,
@@ -30,7 +31,20 @@
 <LayerCake position="absolute" data={geojson} {flatData} custom={{ bounds }} debug>
 	{#if style.renderer === 'svg'}
 		<Svg>
-			<MapSvg type={style.type} {projection} {paint} />
+			{#if style.type === 'polygon'}
+				<MapPolygonSvg
+					{projection}
+					fill={paint.fill}
+					stroke={paint.stroke}
+					strokeOpacity={paint.strokeOpacity}
+					strokeWidth={paint.strokeWidth}
+					fillOpacity={paint.fillOpacity}
+				/>
+			{:else if style.type === 'line'}
+				<!-- <MapLineSvg {projection} /> -->
+			{:else if style.type === 'point'}
+				<!-- <MapPointSvg {projection} {paint} /> -->
+			{/if}
 		</Svg>
 	{:else if style.renderer === 'canvas'}
 		<!-- <Canvas>
