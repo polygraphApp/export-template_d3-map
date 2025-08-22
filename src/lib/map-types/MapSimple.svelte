@@ -3,7 +3,7 @@
 	import * as d3Geo from 'd3-geo';
 
 	import MapPolygonSvg from '$lib/layercake-components/svg/MapPolygon.svg.svelte';
-	// import MapLineSvg from '$lib/layercake-components/MapLine.svg.svelte';
+	import MapLineSvg from '$lib/layercake-components/MapLine.svg.svelte';
 	// import MapPointSvg from '$lib/layercake-components/MapPoint.svg.svelte';
 
 	import MapPolygonCanvas from '$lib/layercake-components/canvas/MapPolygon.canvas.svelte';
@@ -27,6 +27,24 @@
 	function isPolygonType(style) {
 		return style.type === 'polygon';
 	}
+
+	/**
+	 * Typeguard for SimpleLineConfig
+	 * @param {import('../types.js').SimplePolygonConfig | import('../types.js').SimpleLineConfig | import('../types.js').SimplePointConfig} style
+	 * @returns {style is import('../types.js').SimpleLineConfig}
+	 */
+	function isLineType(style) {
+		return style.type === 'line';
+	}
+
+	/**
+	 * Typeguard for SimplePointConfig
+	 * @param {import('../types.js').SimplePolygonConfig | import('../types.js').SimpleLineConfig | import('../types.js').SimplePointConfig} style
+	 * @returns {style is import('../types.js').SimplePointConfig}
+	 */
+	function isPointType(style) {
+		return style.type === 'point';
+	}
 </script>
 
 <LayerCake
@@ -48,9 +66,9 @@
 					strokeWidth={style.paint.strokeWidth}
 					fillOpacity={style.paint.fillOpacity}
 				/>
-			{:else if style.type === 'line'}
-				<!-- <MapLineSvg {projection} /> -->
-			{:else if style.type === 'point'}
+			{:else if isLineType(style)}
+				<MapLineSvg {projection} />
+			{:else if isPointType(style)}
 				<!-- <MapPointSvg {projection} {paint} /> -->
 			{/if}
 		</Svg>
@@ -65,6 +83,10 @@
 					strokeWidth={style.paint.strokeWidth}
 					fillOpacity={style.paint.fillOpacity}
 				/>
+			{:else if isLineType(style)}
+				<!-- <MapLineCanvas {projection} /> -->
+			{:else if isPointType(style)}
+				<!-- <MapPointCanvas {projection} {paint} /> -->
 			{/if}
 		</Canvas>
 	{/if}
