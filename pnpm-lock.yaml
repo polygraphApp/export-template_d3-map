@@ -21,8 +21,8 @@ importers:
         specifier: ^4.0.2
         version: 4.0.2
       layercake:
-        specifier: ^8.4.3
-        version: 8.4.4(svelte@5.38.2)(typescript@5.9.2)
+        specifier: ^10.0.0
+        version: 10.0.0(svelte@5.38.2)(typescript@5.9.2)
       topojson-client:
         specifier: ^3.1.0
         version: 3.1.0
@@ -31,13 +31,13 @@ importers:
         specifier: ^6.1.0
         version: 6.1.0(rollup@4.47.1)
       '@sveltejs/adapter-auto':
-        specifier: ^6.0.0
+        specifier: ^6.1.0
         version: 6.1.0(@sveltejs/kit@2.36.1(@sveltejs/vite-plugin-svelte@5.1.1(svelte@5.38.2)(vite@6.3.5))(svelte@5.38.2)(vite@6.3.5))
       '@sveltejs/kit':
-        specifier: ^2.20.7
+        specifier: ^2.36.1
         version: 2.36.1(@sveltejs/vite-plugin-svelte@5.1.1(svelte@5.38.2)(vite@6.3.5))(svelte@5.38.2)(vite@6.3.5)
       '@sveltejs/vite-plugin-svelte':
-        specifier: ^5.0.3
+        specifier: ^5.1.1
         version: 5.1.1(svelte@5.38.2)(vite@6.3.5)
       '@types/d3-geo':
         specifier: ^3.1.0
@@ -52,22 +52,22 @@ importers:
         specifier: ^1.0.5
         version: 1.0.5
       prettier:
-        specifier: ^3.5.3
+        specifier: ^3.6.2
         version: 3.6.2
       prettier-plugin-svelte:
-        specifier: ^3.3.3
+        specifier: ^3.4.0
         version: 3.4.0(prettier@3.6.2)(svelte@5.38.2)
       svelte:
-        specifier: ^5.28.1
+        specifier: ^5.38.2
         version: 5.38.2
       svelte-check:
-        specifier: ^4.1.6
+        specifier: ^4.3.1
         version: 4.3.1(picomatch@4.0.3)(svelte@5.38.2)(typescript@5.9.2)
       typescript:
-        specifier: ^5.8.3
+        specifier: ^5.9.2
         version: 5.9.2
       vite:
-        specifier: ^6.3.2
+        specifier: ^6.3.5
         version: 6.3.5
 
 packages:
@@ -569,8 +569,9 @@ packages:
     resolution: {integrity: sha512-o+NO+8WrRiQEE4/7nwRJhN1HWpVmJm511pBHUxPLtp0BUISzlBplORYSmTclCnJvQq2tKu/sgl3xVpkc7ZWuQQ==}
     engines: {node: '>=6'}
 
-  layercake@8.4.4:
-    resolution: {integrity: sha512-94FCJSOxFZVSlBxu9JkMe0Xp+LZGju5MT8bGAghIdD1SI3mQsXR6sPVj0JNt7dharutJgta8GjZ44BUY66ewOg==}
+  layercake@10.0.0:
+    resolution: {integrity: sha512-Og93KpI+SA9zWAPobWnJOWNshderKEVB3S9pQkrXmGexkEGQfE1uwd7T14szsTtpkzve/2ELwLqza05k+JQs+g==}
+    engines: {node: ^20.17.0 || >=22.9.0, npm: '>=11.0.0'}
     peerDependencies:
       svelte: 3 - 5 || >=5.0.0-next.120
       typescript: ^5.0.2
@@ -578,8 +579,8 @@ packages:
   locate-character@3.0.0:
     resolution: {integrity: sha512-SW13ws7BjaeJ6p7Q6CO2nchbYEc3X3J6WrmTTDto7yMPqVSZTUyY5Tjbid+Ab8gLnATtygYtiDIJGQRRn2ZOiA==}
 
-  magic-string@0.30.17:
-    resolution: {integrity: sha512-sNPKHvyjVf7gyjwS4xGTaW/mCnF8wnjtifKBEhxfZ7E/S8tQ0rssrwGNn6q8JH/ohItJfSQp9mBtQYuTlH5QnA==}
+  magic-string@0.30.18:
+    resolution: {integrity: sha512-yi8swmWbO17qHhwIBNeeZxTceJMeBvWJaId6dyvTSOwTipqeHhMhOrz6513r1sOKnpvQ7zkhlG8tPrpilwTxHQ==}
 
   mri@1.2.0:
     resolution: {integrity: sha512-tzzskb3bG8LvYGFF/mDTpq3jpI6Q9wc3LEmBaghu+DdCssd1FakN7Bc0hVNmEyGq1bq3RgfkCb3cmQLpNPOroA==}
@@ -945,7 +946,7 @@ snapshots:
       devalue: 5.1.1
       esm-env: 1.2.2
       kleur: 4.1.5
-      magic-string: 0.30.17
+      magic-string: 0.30.18
       mrmime: 2.0.1
       sade: 1.8.1
       set-cookie-parser: 2.7.1
@@ -968,7 +969,7 @@ snapshots:
       debug: 4.4.1
       deepmerge: 4.3.1
       kleur: 4.1.5
-      magic-string: 0.30.17
+      magic-string: 0.30.18
       svelte: 5.38.2
       vite: 6.3.5
       vitefu: 1.1.1(vite@6.3.5)
@@ -1120,7 +1121,7 @@ snapshots:
 
   kleur@4.1.5: {}
 
-  layercake@8.4.4(svelte@5.38.2)(typescript@5.9.2):
+  layercake@10.0.0(svelte@5.38.2)(typescript@5.9.2):
     dependencies:
       d3-array: 3.2.4
       d3-color: 3.1.0
@@ -1131,7 +1132,7 @@ snapshots:
 
   locate-character@3.0.0: {}
 
-  magic-string@0.30.17:
+  magic-string@0.30.18:
     dependencies:
       '@jridgewell/sourcemap-codec': 1.5.5
 
@@ -1234,7 +1235,7 @@ snapshots:
       esrap: 2.1.0
       is-reference: 3.0.3
       locate-character: 3.0.0
-      magic-string: 0.30.17
+      magic-string: 0.30.18
       zimmerframe: 1.1.2
 
   tinyglobby@0.2.14:

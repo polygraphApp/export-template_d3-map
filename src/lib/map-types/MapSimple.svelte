@@ -9,26 +9,37 @@
 	import MapPolygonCanvas from '$lib/layercake-components/canvas/MapPolygon.canvas.svelte';
 
 	/** @type {{
-    geojson: import('geojson').FeatureCollection,
-    style: import('../types.js').StyleConfig,
+		geojson: import('geojson').FeatureCollection,
+		style: import('../types.js').SimplePolygonConfig | import('../types.js').SimpleLineConfig | import('../types.js').SimplePointConfig,
 		bounds: [[number, number], [number, number]]
-  }} */
+	}} */
 	let { geojson, style, bounds } = $props();
 
 	/** @type {() => import('d3-geo').GeoProjection} */
 	// @ts-ignore
 	const projection = d3Geo[style.projection];
+
+	/**
+	 * Typeguard for SimplePolygonConfig
+	 * @param {import('../types.js').SimplePolygonConfig | import('../types.js').SimpleLineConfig | import('../types.js').SimplePointConfig} style
+	 * @returns {style is import('../types.js').SimplePolygonConfig}
+	 */
+	function isPolygonType(style) {
+		return style.type === 'polygon';
+	}
 </script>
 
 <LayerCake
 	position="absolute"
 	data={geojson}
-	flatData={geojson.features.filter(properties => properties !== null).map(d => d.properties)}
+	flatData={geojson.features
+		.map(d => d.properties)
+		.filter(d => d !== null && typeof d !== 'undefined')}
 	custom={{ bounds }}
 >
 	{#if style.renderer === 'svg'}
 		<Svg>
-			{#if style.type === 'polygon'}
+			{#if isPolygonType(style)}
 				<MapPolygonSvg
 					{projection}
 					fill={style.paint.fill}
@@ -45,14 +56,16 @@
 		</Svg>
 	{:else if style.renderer === 'canvas'}
 		<Canvas>
-			<MapPolygonCanvas
-				{projection}
-				fill={style.paint.fill}
-				stroke={style.paint.stroke}
-				strokeOpacity={style.paint.strokeOpacity}
-				strokeWidth={style.paint.strokeWidth}
-				fillOpacity={style.paint.fillOpacity}
-			/>
+			{#if isPolygonType(style)}
+				<MapPolygonCanvas
+					{projection}
+					fill={style.paint.fill}
+					stroke={style.paint.stroke}
+					strokeOpacity={style.paint.strokeOpacity}
+					strokeWidth={style.paint.strokeWidth}
+					fillOpacity={style.paint.fillOpacity}
+				/>
+			{/if}
 		</Canvas>
 	{/if}
 </LayerCake>

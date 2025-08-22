@@ -8,9 +8,9 @@
 
 	/** @typedef {import('topojson-specification').Topology} */
 	import usStates from './_data/topojson/us-states.json';
-	/** @typedef {import('$lib/types.js').StyleConfig} */
+	/** @typedef {import('$lib/types.js').MapStyleConfig} */
 	import polygonSingleColor from './_data/style/polygon-singlecolor.style.json';
-	/** @typedef {import('$lib/types.js').StyleConfig} */
+	/** @typedef {import('$lib/types.js').MapStyleConfig} */
 	import polygonChoropleth from './_data/style/polygon-choropleth.style.json';
 
 	const allMapExamples = [

@@ -1,16 +1,52 @@
 /**
- * @typedef {Object} StyleConfig
- * @property {'polygon'|'line'|'point'} type - The type of map feature to render.
- * @property {keyof typeof import('d3-geo')} projection - The D3 projection to use (e.g., 'geoMercator', 'geoAlbersUsa').
- * @property {'canvas'|'svg'} renderer - The renderer to use for the map.
- * @property {SimplePolygon|ChoroplethPolygon|SimpleLine|ChoroplethLine|SimplePoint|ChoroplethPoint|SimpleDynamicPoint|ChoroplethDynamicPoint} paint
+ * @typedef {SimplePolygonConfig | ChoroplethPolygonConfig | SimpleLineConfig | ChoroplethLineConfig | SimplePointConfig | ChoroplethPointConfig | SimpleDynamicPointConfig | ChoroplethDynamicPointConfig} MapStyleConfig
  */
 
 /**
- * @typedef {Object} ChoroplethBase
- * @property {string} fillKey - For choropleth maps, the field to color by
- * @property {any[]} fillDomain - The domain for the color scale.
- * @property {any[]} fillRange - The range for the color scale.
+ * @typedef {Object} BaseStyleConfig
+ * @property {'polygon'|'line'|'point'} type - The type of map feature to render.
+ * @property {keyof typeof import('d3-geo')} projection - The D3 projection to use (e.g., 'geoMercator', 'geoAlbersUsa').
+ * @property {'canvas'|'svg'} renderer - The renderer to use for the map.
+ */
+
+/**
+ * @typedef {BaseStyleConfig & { paint: SimplePolygon }} SimplePolygonConfig
+ * @property {SimplePolygon} paint - The paint properties for the choropleth polygon style.
+ */
+
+/**
+ * @typedef {BaseStyleConfig & {paint: ChoroplethPolygon}} ChoroplethPolygonConfig
+ * @property {ChoroplethPolygon} paint - The paint properties for the choropleth polygon style.
+ */
+
+/**
+ * @typedef {BaseStyleConfig & {paint: SimpleLine}} SimpleLineConfig
+ * @property {SimpleLine} paint - The paint properties for the line style.
+ */
+
+/**
+ * @typedef {BaseStyleConfig & {paint: ChoroplethLine}} ChoroplethLineConfig
+ * @property {ChoroplethLine} paint - The paint properties for the choropleth line style.
+ */
+
+/**
+ * @typedef {BaseStyleConfig & {paint: SimplePoint}} SimplePointConfig
+ * @property {SimplePoint} paint - The paint properties for the point style.
+ */
+
+/**
+ * @typedef {BaseStyleConfig & {paint: ChoroplethPoint}} ChoroplethPointConfig
+ * @property {ChoroplethPoint} paint - The paint properties for the choropleth point style.
+ */
+
+/**
+ * @typedef {BaseStyleConfig & {paint: SimpleDynamicPoint}} SimpleDynamicPointConfig
+ * @property {SimpleDynamicPoint} paint - The paint properties for the dynamic point style.
+ */
+
+/**
+ * @typedef {BaseStyleConfig & {paint: ChoroplethDynamicPoint}} ChoroplethDynamicPointConfig
+ * @property {ChoroplethDynamicPoint} paint - The paint properties for the choropleth dynamic point style.
  */
 
 /**
@@ -19,6 +55,7 @@
  * @property {number} [fillOpacity=1] - The opacity of the fill color.
  * @property {string} [stroke='#000'] - The stroke color for the map features.
  * @property {number} [strokeWidth=0.5] - The width of the stroke for the map features.
+ * @property {number} [strokeOpacity=1] - The opacity of the stroke for the map features.
  */
 
 /**
