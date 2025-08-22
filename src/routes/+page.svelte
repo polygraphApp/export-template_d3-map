@@ -14,10 +14,16 @@
 	import polygonChoropleth from './_data/style/polygon-choropleth.style.json';
 
 	const allMapExamples = [
-		[{ topodata: usStates, style: polygonSingleColor }],
-		[{ topodata: usStates, style: polygonChoropleth }],
-		[{ topodata: usStates, style: { ...polygonSingleColor, renderer: 'canvas' } }],
-		[{ topodata: usStates, style: { ...polygonChoropleth, renderer: 'canvas' } }]
+		{ name: 'Single Color', layers: [{ topodata: usStates, style: polygonSingleColor }] },
+		{ name: 'Choropleth', layers: [{ topodata: usStates, style: polygonChoropleth }] },
+		{
+			name: 'Single Color (Canvas)',
+			layers: [{ topodata: usStates, style: { ...polygonSingleColor, renderer: 'canvas' } }]
+		},
+		{
+			name: 'Choropleth (Canvas)',
+			layers: [{ topodata: usStates, style: { ...polygonChoropleth, renderer: 'canvas' } }]
+		}
 
 		// @ts-ignore
 	].map(loadLayers);
@@ -28,7 +34,7 @@
 
 	<div class="container">
 		{#each allMapExamples as example}
-			<div class="item">
+			<div class="item" data-label={example.name}>
 				{#each example.layers as { geojson, style }}
 					{#if style.type === 'point' && 'radiusKey' in style.paint}
 						{#if 'fillKey' in style.paint}
@@ -72,15 +78,17 @@
 		border-radius: 5px;
 		position: relative;
 	}
-	.item :global(.chart-container):before {
+	.item:before {
 		content: attr(data-label);
 		position: absolute;
 
 		top: 0;
 		left: 0;
 		padding: 5px;
-		color: #000;
-		background-color: rgba(0, 0, 0, 0.25);
+		border-bottom: 1px solid #ccc;
+		border-right: 1px solid #ccc;
+		color: #666;
+
 		border-bottom-right-radius: 5px;
 	}
 </style>
