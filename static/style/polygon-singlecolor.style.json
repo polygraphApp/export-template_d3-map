@@ -1,7 +1,0 @@
-{
-	"type": "polygon",
-	"projection": "geoAlbersUsa",
-	"stroke": "#000",
-	"fill": "#fc0",
-	"svg": true
-}

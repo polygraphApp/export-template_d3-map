@@ -1,8 +1,0 @@
-{
-	"type": "line",
-	"canvas": true,
-	"projection": "geoMercator",
-	"strokeWidth": 2,
-	"stroke": "#42bd00",
-	"fill": "#42bd00"
-}

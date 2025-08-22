@@ -50,9 +50,9 @@
 		{#each $data.features as feature}
 			<path
 				class="feature-path"
-				fill={fill || $zGet(feature.properties)}
-				{stroke}
-				stroke-width={strokeWidth}
+				fill={paint.fill}
+				stroke={paint.stroke}
+				stroke-width={paint.strokeWidth}
 				d={geoPathFn(feature)}
 				role="tooltip"
 				onmouseenter={() => console.log(feature.properties)}
@@ -60,30 +60,30 @@
 		{/each}
 		<!-- Lines -->
 	{:else if type === 'line'}
-		{#each $data.features as feature}
+		<!-- {#each $data.features as feature}
 			<path
 				class="feature-path"
 				fill="none"
-				stroke={fill || $zGet(feature.properties)}
-				stroke-width={strokeWidth}
+				stroke={paint.fill || $zGet(feature.properties)}
+				stroke-width={paint.strokeWidth}
 				d={geoPathFn(feature)}
 				role="tooltip"
 			></path>
-		{/each}
+		{/each} -->
 		<!-- Points -->
 	{:else if type === 'point'}
-		{#each $data.features as feature}
+		<!-- {#each $data.features as feature}
 			<circle
 				class="feature-path"
-				fill={fill || $zGet(feature.properties)}
-				{stroke}
-				stroke-width={strokeWidth}
+				fill={paint.fill || $zGet(feature.properties)}
+				stroke={paint.stroke}
+				stroke-width={paint.strokeWidth}
 				cx={geoPathFn.centroid(feature)[0]}
 				cy={geoPathFn.centroid(feature)[1]}
-				r={radius}
+				r={paint.radius}
 				role="tooltip"
 			></circle>
-		{/each}
+		{/each} -->
 	{/if}
 </g>
 

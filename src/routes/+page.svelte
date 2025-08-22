@@ -1,25 +1,49 @@
 <script>
-	import MapLoader from '$lib/MapLoader.svelte';
+	import MapSimple from '$lib/map-types/MapSimple.svelte';
+	import MapChoropleth from '$lib/map-types/MapChoropleth.svelte';
+	import MapDynamicPointChoropleth from '$lib/map-types/MapDynamicPointChoropleth.svelte';
+	import MapDynamicPointSimple from '$lib/map-types/MapDynamicPointSimple.svelte';
+
+	import loadLayers from '$lib/modules/loadLayers.js';
+
+	/** @typedef {import('topojson-specification').Topology} */
+	import usStates from './_data/topojson/us-states.json';
+	/** @typedef {import('$lib/types.js').MapStyleConfig} */
+	import polygonSingleColor from './_data/style/polygon-singlecolor.style.json';
+	/** @typedef {import('$lib/types.js').MapStyleConfig} */
+	import polygonChoropleth from './_data/style/polygon-choropleth.style.json';
+
+	const allMapExamples = [
+		[{ topodata: usStates, style: polygonSingleColor }],
+		[{ topodata: usStates, style: polygonChoropleth }],
+		[{ topodata: usStates, style: { ...polygonSingleColor, renderer: 'canvas' } }],
+		[{ topodata: usStates, style: { ...polygonChoropleth, renderer: 'canvas' } }]
+
+		// @ts-ignore
+	].map(loadLayers);
 </script>
 
 <div class="wrapper">
 	<h1>Gallery</h1>
 
 	<div class="container">
-		<div class="item"><MapLoader layers={['polygon-singlecolor']} /></div>
-		<div class="item"><MapLoader layers={['polygon-choropleth']} /></div>
-		<div class="item"><MapLoader layers={['polygon-singlecolor-canvas']} /></div>
-		<div class="item"><MapLoader layers={['polygon-choropleth-canvas']} /></div>
-
-		<div class="item"><MapLoader layers={['linesegments-singlecolor']} /></div>
-		<div class="item"><MapLoader layers={['linesegments-choropleth']} /></div>
-		<div class="item"><MapLoader layers={['linesegments-singlecolor-canvas']} /></div>
-		<div class="item"><MapLoader layers={['linesegments-choropleth-canvas']} /></div>
-
-		<div class="item"><MapLoader layers={['point-singlecolor']} /></div>
-		<div class="item"><MapLoader layers={['point-singlecolor-canvas']} /></div>
-		<!-- <div class="item"><MapLoader layers={['point-choropleth']} /></div>
-		<div class="item"><MapLoader layers={['point-choropleth-canvas']} /></div> -->
+		{#each allMapExamples as example}
+			<div class="item">
+				{#each example.layers as { geojson, style }}
+					{#if style.type === 'point' && 'radiusKey' in style.paint}
+						{#if 'fillKey' in style.paint}
+							<MapDynamicPointChoropleth bounds={example.bounds} {geojson} {style} />
+						{:else}
+							<MapDynamicPointSimple bounds={example.bounds} {geojson} {style} />
+						{/if}
+					{:else if 'fillKey' in style.paint}
+						<MapChoropleth bounds={example.bounds} {geojson} {style} />
+					{:else}
+						<MapSimple bounds={example.bounds} {geojson} {style} />
+					{/if}
+				{/each}
+			</div>
+		{/each}
 	</div>
 </div>
 
@@ -42,10 +66,11 @@
 		height: 100%;
 	}
 	.item {
-		width: 300px;
+		width: 23%;
 		height: 300px;
 		border: 1px solid #ccc;
 		border-radius: 5px;
+		position: relative;
 	}
 	.item :global(.chart-container):before {
 		content: attr(data-label);
