@@ -30,13 +30,13 @@
 		{#each allMapExamples as example}
 			<div class="item">
 				{#each example.layers as { geojson, style }}
-					{#if style.type === 'point' && style.paint.radiusKey}
-						{#if style.paint.fillKey}
+					{#if style.type === 'point' && 'radiusKey' in style.paint}
+						{#if 'fillKey' in style.paint}
 							<MapDynamicPointChoropleth bounds={example.bounds} {geojson} {style} />
 						{:else}
 							<MapDynamicPointSimple bounds={example.bounds} {geojson} {style} />
 						{/if}
-					{:else if style.paint.fillKey}
+					{:else if 'fillKey' in style.paint}
 						<MapChoropleth bounds={example.bounds} {geojson} {style} />
 					{:else}
 						<MapSimple bounds={example.bounds} {geojson} {style} />
