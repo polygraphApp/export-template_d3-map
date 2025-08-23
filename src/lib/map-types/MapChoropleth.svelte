@@ -9,11 +9,13 @@
 
 	import MapPolygonCanvas from '$lib/layercake-components/canvas/MapPolygon.canvas.svelte';
 
-	/** @type {{
-		geojson: import('geojson').FeatureCollection,
-		style: import('$lib/types.js').ChoroplethPolygonConfig | import('$lib/types.js').ChoroplethLineConfig | import('$lib/types.js').ChoroplethPointConfig,
-		bounds: [[number, number], [number, number]]
-	}} */
+	/** @typedef {Object} Props
+	 * @property {import('geojson').FeatureCollection} geojson
+	 * @property {import('$lib/types.js').ChoroplethPolygonConfig | import('$lib/types.js').ChoroplethLineConfig | import('$lib/types.js').ChoroplethPointConfig} style
+	 * @property {[[number, number], [number, number]]} bounds
+	 */
+
+	/** @type {Props} */
 	let { geojson, style, bounds } = $props();
 
 	/** @type {() => import('d3-geo').GeoProjection} */

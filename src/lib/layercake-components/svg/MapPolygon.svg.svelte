@@ -12,9 +12,7 @@
 	 * @typedef {import('$lib/types.js').PolygonConfig} Props
 	 */
 
-	/**
-	 * @type {Props}
-	 */
+	/** @type {Props} */
 	let {
 		projection,
 		// @ts-ignore

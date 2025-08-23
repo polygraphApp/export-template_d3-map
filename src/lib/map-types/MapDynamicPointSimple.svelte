@@ -6,14 +6,14 @@
 	// import MapSvg from '../layercake-components/Map.svg.svelte';
 	// import MapCanvas from '../layercake-components/Map.canvas.svelte';
 
-	/** @type {{
-    geojson: import('geojson').FeatureCollection,
-    style: import('$lib/types.js').StyleConfig,
-		bounds: any[][]
-  }} */
-	let { geojson, style, bounds } = $props();
+	/** @typedef {Object} Props
+	 * @property {import('geojson').FeatureCollection} geojson
+	 * @property {import('$lib/types.js').MapStyleConfig} style
+	 * @property {any[][]} bounds
+	 */
 
-	let { paint } = $derived(style);
+	/** @type {Props} */
+	let { geojson, style, bounds } = $props();
 
 	/** @type {() => import('d3-geo').GeoProjection} */
 	// @ts-ignore
@@ -31,11 +31,11 @@
 <LayerCake position="absolute" data={geojson} {flatData} custom={{ bounds }} debug>
 	{#if style.renderer === 'svg'}
 		<Svg>
-			<!-- <MapSvg type={style.type} {projection} {paint} /> -->
+			<!-- <MapSvg type={style.type} {projection} {...style.paint} /> -->
 		</Svg>
 	{:else if style.renderer === 'canvas'}
 		<!-- <Canvas>
-			<MapCanvas type={style.type} {projection} {paint} />
+			<MapCanvas type={style.type} {projection} {...style.paint} />
 		</Canvas> -->
 	{/if}
 </LayerCake>

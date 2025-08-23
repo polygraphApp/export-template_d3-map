@@ -6,11 +6,13 @@
 	// import MapSvg from '../layercake-components/Map.svg.svelte';
 	// import MapCanvas from '../layercake-components/Map.canvas.svelte';
 
-	/** @type {{
-    geojson: import('geojson').FeatureCollection,
-    style: import('$lib/types.js').StyleConfig,
-		bounds: any[][]
-  }} */
+	/** @typedef {Object} Props
+	 * @property {import('geojson').FeatureCollection} geojson
+	 * @property {import('$lib/types.js').MapStyleConfig} style
+	 * @property {any[][]} bounds
+	 */
+
+	/** @type {Props} */
 	let { geojson, style, bounds } = $props();
 
 	let { paint } = $derived(style);
