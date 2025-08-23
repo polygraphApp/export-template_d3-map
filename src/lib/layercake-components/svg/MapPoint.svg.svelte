@@ -6,7 +6,7 @@
 	import { getContext } from 'svelte';
 	import { geoPath } from 'd3-geo';
 
-	const { data, width, height, zGet, custom } = getContext('LayerCake');
+	const { data, width, height, zGet, custom, config } = getContext('LayerCake');
 
 	/**
 	 * @typedef {import('$lib/types.js').PointConfig} Props
@@ -47,22 +47,24 @@
 	});
 
 	let projectionFn = $derived(projection().fitSize(fitSizeRange, boundsFeature));
-	let geoPathFn = $derived(geoPath(projectionFn));
 </script>
 
 <g class="map-group" role="tooltip">
 	{#each $data.features as feature}
-		<circle
-			class="feature-path"
-			fill={fill || $zGet(feature.properties)}
-			{stroke}
-			stroke-width={strokeWidth}
-			stroke-opacity={strokeOpacity}
-			cx={geoPathFn.centroid(feature)[0]}
-			cy={geoPathFn.centroid(feature)[1]}
-			r={radius}
-			role="tooltip"
-		></circle>
+		{@const coords = projectionFn(feature.geometry.coordinates)}
+		{#if coords}
+			<circle
+				class="feature-path"
+				fill={$config.z ? $zGet(feature.properties) : fill}
+				{stroke}
+				stroke-width={strokeWidth}
+				stroke-opacity={strokeOpacity}
+				cx={coords[0]}
+				cy={coords[1]}
+				r={radius}
+				role="tooltip"
+			></circle>
+		{/if}
 	{/each}
 </g>
 

@@ -1,7 +1,9 @@
 {
-	"type": "circle",
-	"svg": true,
+	"type": "point",
+	"renderer": "svg",
 	"projection": "geoAlbersUsa",
-	"fill": "#a000eb",
-	"radius": 5
+	"paint": {
+		"fill": "#a000eb",
+		"radius": 5
+	}
 }

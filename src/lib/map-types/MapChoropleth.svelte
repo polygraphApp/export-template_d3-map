@@ -5,7 +5,7 @@
 
 	import MapPolygonSvg from '$lib/layercake-components/svg/MapPolygon.svg.svelte';
 	import MapLineSvg from '$lib/layercake-components/svg/MapLine.svg.svelte';
-	// import MapPointSvg from '$lib/layercake-components/svg/MapPoint.svg.svelte';
+	import MapPointSvg from '$lib/layercake-components/svg/MapPoint.svg.svelte';
 
 	import MapPolygonCanvas from '$lib/layercake-components/canvas/MapPolygon.canvas.svelte';
 	import MapLineCanvas from '$lib/layercake-components/canvas/MapLine.canvas.svelte';
@@ -39,12 +39,12 @@
 >
 	{#if style.renderer === 'svg'}
 		<Svg>
-			{#if style.type === 'polygon'}
+			{#if isPolygonType(style)}
 				<MapPolygonSvg {projection} fixedAspectRatio={style.fixedAspectRatio} {...style.paint} />
-			{:else if style.type === 'line'}
+			{:else if isLineType(style)}
 				<MapLineSvg {projection} fixedAspectRatio={style.fixedAspectRatio} {...style.paint} />
-			{:else if style.type === 'point'}
-				<!-- <MapPointSvg {projection} fixedAspectRatio={style.fixedAspectRatio} {...style.paint} /> -->
+			{:else if isPointType(style)}
+				<MapPointSvg {projection} fixedAspectRatio={style.fixedAspectRatio} {...style.paint} />
 			{/if}
 		</Svg>
 	{:else if style.renderer === 'canvas'}

@@ -11,6 +11,8 @@
 	import usStates from './_data/topojson/us-states.json';
 	/** @typedef {import('topojson-specification').Topology} */
 	import lineSegments from './_data/topojson/line-segments.json';
+	/** @typedef {import('topojson-specification').Topology} */
+	import points from './_data/topojson/points.json';
 
 	/** @typedef {import('$lib/types.js').MapStyleConfig} */
 	import polygonSingleColor from './_data/style/polygon-singlecolor.style.json';
@@ -20,34 +22,43 @@
 	import lineSingleColor from './_data/style/linesegments-singlecolor.style.json';
 	/** @typedef {import('$lib/types.js').MapStyleConfig} */
 	import lineChoropleth from './_data/style/linesegments-choropleth.style.json';
+	/** @typedef {import('$lib/types.js').MapStyleConfig} */
+	import pointSingleColor from './_data/style/point-singlecolor.style.json';
+	/** @typedef {import('$lib/types.js').MapStyleConfig} */
+	import pointChoropleth from './_data/style/point-choropleth.style.json';
 
 	const allMapExamples = [
 		// Polygons
-		{ name: 'Single color polygon', layers: [{ topodata: usStates, style: polygonSingleColor }] },
-		{ name: 'Choropleth polygon', layers: [{ topodata: usStates, style: polygonChoropleth }] },
-		{
-			name: 'Single color polygon (Canvas)',
-			layers: [{ topodata: usStates, style: { ...polygonSingleColor, renderer: 'canvas' } }]
-		},
-		{
-			name: 'Choropleth polygon (Canvas)',
-			layers: [{ topodata: usStates, style: { ...polygonChoropleth, renderer: 'canvas' } }]
-		},
-		// Lines
-		{ name: 'Single color line', layers: [{ topodata: lineSegments, style: lineSingleColor }] },
-		{ name: 'Choropleth line', layers: [{ topodata: lineSegments, style: lineChoropleth }] },
+		// { name: 'Single color polygon', layers: [{ topodata: usStates, style: polygonSingleColor }] },
+		// { name: 'Choropleth polygon', layers: [{ topodata: usStates, style: polygonChoropleth }] },
+		// {
+		// 	name: 'Single color polygon (Canvas)',
+		// 	layers: [{ topodata: usStates, style: { ...polygonSingleColor, renderer: 'canvas' } }]
+		// },
+		// {
+		// 	name: 'Choropleth polygon (Canvas)',
+		// 	layers: [{ topodata: usStates, style: { ...polygonChoropleth, renderer: 'canvas' } }]
+		// },
+		// // Lines
+		// { name: 'Single color line', layers: [{ topodata: lineSegments, style: lineSingleColor }] },
+		// { name: 'Choropleth line', layers: [{ topodata: lineSegments, style: lineChoropleth }] },
 
-		{
-			name: 'Single color line (Canvas)',
-			layers: [{ topodata: lineSegments, style: { ...lineSingleColor, renderer: 'canvas' } }]
-		},
-		{
-			name: 'Choropleth line (Canvas)',
-			layers: [{ topodata: lineSegments, style: { ...lineChoropleth, renderer: 'canvas' } }]
-		}
+		// {
+		// 	name: 'Single color line (Canvas)',
+		// 	layers: [{ topodata: lineSegments, style: { ...lineSingleColor, renderer: 'canvas' } }]
+		// },
+		// {
+		// 	name: 'Choropleth line (Canvas)',
+		// 	layers: [{ topodata: lineSegments, style: { ...lineChoropleth, renderer: 'canvas' } }]
+		// },
+		// Points
+		{ name: 'Single color point', layers: [{ topodata: points, style: pointSingleColor }] },
+		{ name: 'Choropleth point', layers: [{ topodata: points, style: pointChoropleth }] }
 
 		// @ts-ignore
 	].map(loadLayers);
+
+	console.log(allMapExamples);
 </script>
 
 <div class="wrapper">
@@ -65,7 +76,7 @@
 						{/if}
 					{:else if isChoropleth(style)}
 						<MapChoropleth bounds={example.bounds} {geojson} {style} />
-					{:else if style.paint}
+					{:else}
 						<MapSimple bounds={example.bounds} {geojson} {style} />
 					{/if}
 				{/each}
