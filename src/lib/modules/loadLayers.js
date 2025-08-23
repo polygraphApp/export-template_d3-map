@@ -6,11 +6,11 @@ import { rewindFeatureCollection } from '@placemarkio/geojson-rewind';
  * @param {{
  * 	layers: Array<{
  * 		topodata: import('topojson-specification').Topology,
- * 		style: import('../types.js').MapStyleConfig
+ * 		style: import('$lib/types.js').MapStyleConfig
  * 	}>,
  * 	name: string?
  * }} config
- * @returns {{name: string?, bounds: [[number, number], [number, number]], layers: Array<{ geojson: import('geojson').FeatureCollection, style: import('../types.js').MapStyleConfig }>}}
+ * @returns {{name: string?, bounds: [[number, number], [number, number]], layers: Array<{ geojson: import('geojson').FeatureCollection, style: import('$lib/types.js').MapStyleConfig }>}}
  * }}
  */
 export default function loadLayers(config) {
@@ -21,7 +21,7 @@ export default function loadLayers(config) {
 		/**
 		 * @type {{
 		 * 	geojson: import('geojson').FeatureCollection,
-		 * 	style: import('../types.js').MapStyleConfig
+		 * 	style: import('$lib/types.js').MapStyleConfig
 		 * }}
 		 */
 		return {

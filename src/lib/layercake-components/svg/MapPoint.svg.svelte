@@ -12,7 +12,7 @@
 	 * @type {{
 	 *  type: 'polygon' | 'line' | 'point',
 	 *  projection: () => import('d3-geo').GeoProjection,
-	 *  paint: import('../types.js').SimplePolygon | import('../types.js').ChoroplethPolygon | import('../types.js').SimpleLine | import('../types.js').ChoroplethLine | import('../types.js').SimplePoint | import('../types.js').ChoroplethPoint | import('../types.js').SimpleDynamicPoint | import('../types.js').ChoroplethDynamicPoint,
+	 *  paint: import('$lib/types.js').SimplePolygon | import('$lib/types.js').ChoroplethPolygon | import('$lib/types.js').SimpleLine | import('$lib/types.js').ChoroplethLine | import('$lib/types.js').SimplePoint | import('$lib/types.js').ChoroplethPoint | import('$lib/types.js').SimpleDynamicPoint | import('$lib/types.js').ChoroplethDynamicPoint,
 	 *  fixedAspectRatio?: number
 	 * }}
 	 */

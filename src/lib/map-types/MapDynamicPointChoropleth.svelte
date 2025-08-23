@@ -8,7 +8,7 @@
 
 	/** @type {{
     geojson: import('geojson').FeatureCollection,
-    style: import('../types.js').StyleConfig,
+    style: import('$lib/types.js').StyleConfig,
 		bounds: any[][]
   }} */
 	let { geojson, style, bounds } = $props();

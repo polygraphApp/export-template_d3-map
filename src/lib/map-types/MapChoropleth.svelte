@@ -11,7 +11,7 @@
 
 	/** @type {{
     geojson: import('geojson').FeatureCollection,
-    style: import('../types.js').StyleConfig,
+    style: import('$lib/types.js').StyleConfig,
 		bounds: [[number, number], [number, number]]
   }} */
 	let { geojson, style, bounds } = $props();

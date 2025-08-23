@@ -3,14 +3,14 @@
 	import * as d3Geo from 'd3-geo';
 
 	import MapPolygonSvg from '$lib/layercake-components/svg/MapPolygon.svg.svelte';
-	import MapLineSvg from '$lib/layercake-components/MapLine.svg.svelte';
+	import MapLineSvg from '$lib/layercake-components/svg/MapLine.svg.svelte';
 	// import MapPointSvg from '$lib/layercake-components/MapPoint.svg.svelte';
 
 	import MapPolygonCanvas from '$lib/layercake-components/canvas/MapPolygon.canvas.svelte';
 
 	/** @type {{
 		geojson: import('geojson').FeatureCollection,
-		style: import('../types.js').SimplePolygonConfig | import('../types.js').SimpleLineConfig | import('../types.js').SimplePointConfig,
+		style: import('$lib/types.js').SimplePolygonConfig | import('$lib/types.js').SimpleLineConfig | import('$lib/types.js').SimplePointConfig,
 		bounds: [[number, number], [number, number]]
 	}} */
 	let { geojson, style, bounds } = $props();
@@ -21,8 +21,8 @@
 
 	/**
 	 * Typeguard for SimplePolygonConfig
-	 * @param {import('../types.js').SimplePolygonConfig | import('../types.js').SimpleLineConfig | import('../types.js').SimplePointConfig} style
-	 * @returns {style is import('../types.js').SimplePolygonConfig}
+	 * @param {import('$lib/types.js').SimplePolygonConfig | import('$lib/types.js').SimpleLineConfig | import('$lib/types.js').SimplePointConfig} style
+	 * @returns {style is import('$lib/types.js').SimplePolygonConfig}
 	 */
 	function isPolygonType(style) {
 		return style.type === 'polygon';
@@ -30,8 +30,8 @@
 
 	/**
 	 * Typeguard for SimpleLineConfig
-	 * @param {import('../types.js').SimplePolygonConfig | import('../types.js').SimpleLineConfig | import('../types.js').SimplePointConfig} style
-	 * @returns {style is import('../types.js').SimpleLineConfig}
+	 * @param {import('$lib/types.js').SimplePolygonConfig | import('$lib/types.js').SimpleLineConfig | import('$lib/types.js').SimplePointConfig} style
+	 * @returns {style is import('$lib/types.js').SimpleLineConfig}
 	 */
 	function isLineType(style) {
 		return style.type === 'line';
@@ -39,8 +39,8 @@
 
 	/**
 	 * Typeguard for SimplePointConfig
-	 * @param {import('../types.js').SimplePolygonConfig | import('../types.js').SimpleLineConfig | import('../types.js').SimplePointConfig} style
-	 * @returns {style is import('../types.js').SimplePointConfig}
+	 * @param {import('$lib/types.js').SimplePolygonConfig | import('$lib/types.js').SimpleLineConfig | import('$lib/types.js').SimplePointConfig} style
+	 * @returns {style is import('$lib/types.js').SimplePointConfig}
 	 */
 	function isPointType(style) {
 		return style.type === 'point';
@@ -58,16 +58,9 @@
 	{#if style.renderer === 'svg'}
 		<Svg>
 			{#if isPolygonType(style)}
-				<MapPolygonSvg
-					{projection}
-					fill={style.paint.fill}
-					stroke={style.paint.stroke}
-					strokeOpacity={style.paint.strokeOpacity}
-					strokeWidth={style.paint.strokeWidth}
-					fillOpacity={style.paint.fillOpacity}
-				/>
+				<MapPolygonSvg {projection} fixedAspectRatio={style.fixedAspectRatio} {...style.paint} />
 			{:else if isLineType(style)}
-				<MapLineSvg {projection} />
+				<MapLineSvg {projection} fixedAspectRatio={style.fixedAspectRatio} {...style.paint} />
 			{:else if isPointType(style)}
 				<!-- <MapPointSvg {projection} {paint} /> -->
 			{/if}

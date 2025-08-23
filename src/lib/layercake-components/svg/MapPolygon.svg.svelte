@@ -9,22 +9,20 @@
 	const { data, width, height, zGet, custom, config } = getContext('LayerCake');
 
 	/**
-	 * @typedef {Object} Props
-	 * @property {() => import('d3-geo').GeoProjection} projection - A function that returns a D3 GeoProjection.
-	 * @property {string} [fill='#fff'] - The fill color of the shape.
-	 * @property {string} [stroke='#000'] - The stroke color of the shape.
-	 * @property {number} [strokeWidth=0.5] - The width of the stroke.
-	 * @property {number} [strokeOpacity=1] - The stroke opacity of the shape.
-	 * @property {number} [fillOpacity=1] - The fill opacity of the shape.
-	 * @property {number} [fixedAspectRatio=undefined] - A fixed aspect ratio for the shape.
+	 * @typedef {import('$lib/types.js').PolygonConfig} Props
 	 */
-	/** @type {Props} */
+
+	/**
+	 * @type {Props}
+	 */
 	let {
 		projection,
+		// @ts-ignore
 		fill = '#fff',
 		stroke = '#000',
 		strokeWidth = 0.5,
 		fillOpacity = 1,
+		strokeOpacity = 1,
 		fixedAspectRatio = undefined
 	} = $props();
 
@@ -57,6 +55,7 @@
 			fill-opacity={fillOpacity}
 			{stroke}
 			stroke-width={strokeWidth}
+			stroke-opacity={strokeOpacity}
 			d={geoPathFn(feature)}
 			role="tooltip"
 			onmouseenter={() => console.log(feature.properties)}

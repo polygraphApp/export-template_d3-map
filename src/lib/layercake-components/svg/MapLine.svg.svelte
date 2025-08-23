@@ -6,36 +6,34 @@
 	import { getContext } from 'svelte';
 	import { geoPath } from 'd3-geo';
 
-	const { data, width, height, zGet, custom } = getContext('LayerCake');
+	const { data, width, height, zGet, custom, config } = getContext('LayerCake');
 
 	/**
-	 * @type {{
-	 *  type: 'polygon' | 'line' | 'point',
-	 *  projection: () => import('d3-geo').GeoProjection,
-	 *  paint: import('../types.js').SimplePolygon | import('../types.js').ChoroplethPolygon | import('../types.js').SimpleLine | import('../types.js').ChoroplethLine | import('../types.js').SimplePoint | import('../types.js').ChoroplethPoint | import('../types.js').SimpleDynamicPoint | import('../types.js').ChoroplethDynamicPoint,
-	 *  fixedAspectRatio?: number
-	 * }}
+	 * @typedef {Object} Props
+	 * @property {() => import('d3-geo').GeoProjection} projection - A function that returns a D3 GeoProjection.
+	 * @property {string} [fill='#fff'] - The fill color of the shape.
+	 * @property {string} [stroke='#000'] - The stroke color of the shape.
+	 * @property {number} [strokeWidth=0.5] - The width of the stroke.
+	 * @property {number} [strokeOpacity=1] - The stroke opacity of the shape.
+	 * @property {number} [fillOpacity=1] - The fill opacity of the shape.
+	 * @property {number} [fixedAspectRatio=undefined] - A fixed aspect ratio for the shape.
 	 */
-	let { type, projection, paint, fixedAspectRatio = undefined } = $props();
+	/** @type {Props} */
+	let { projection, fill = '#fff', strokeWidth = 0.5, fixedAspectRatio = undefined } = $props();
 
 	/** @type {[number, number]} */
 	let fitSizeRange = $derived(fixedAspectRatio ? [100, 100 / fixedAspectRatio] : [$width, $height]);
-
-	let left = $derived($custom.bounds[0][0]);
-	let bottom = $derived($custom.bounds[0][1]);
-	let right = $derived($custom.bounds[1][0]);
-	let top = $derived($custom.bounds[1][1]);
 
 	/** @type {import('geojson').Geometry} */
 	let boundsFeature = $derived({
 		type: 'Polygon',
 		coordinates: [
 			[
-				[left, bottom],
-				[left, top],
-				[right, top],
-				[right, bottom],
-				[left, bottom]
+				[$custom.bounds[0][0], $custom.bounds[0][1]],
+				[$custom.bounds[0][0], $custom.bounds[1][1]],
+				[$custom.bounds[1][0], $custom.bounds[1][1]],
+				[$custom.bounds[1][0], $custom.bounds[0][1]],
+				[$custom.bounds[0][0], $custom.bounds[0][1]]
 			]
 		]
 	});
@@ -45,46 +43,16 @@
 </script>
 
 <g class="map-group" role="tooltip">
-	<!-- Polygons -->
-	{#if type === 'polygon'}
-		{#each $data.features as feature}
-			<path
-				class="feature-path"
-				fill={paint.fill}
-				stroke={paint.stroke}
-				stroke-width={paint.strokeWidth}
-				d={geoPathFn(feature)}
-				role="tooltip"
-				onmouseenter={() => console.log(feature.properties)}
-			></path>
-		{/each}
-		<!-- Lines -->
-	{:else if type === 'line'}
-		<!-- {#each $data.features as feature}
-			<path
-				class="feature-path"
-				fill="none"
-				stroke={paint.fill || $zGet(feature.properties)}
-				stroke-width={paint.strokeWidth}
-				d={geoPathFn(feature)}
-				role="tooltip"
-			></path>
-		{/each} -->
-		<!-- Points -->
-	{:else if type === 'point'}
-		<!-- {#each $data.features as feature}
-			<circle
-				class="feature-path"
-				fill={paint.fill || $zGet(feature.properties)}
-				stroke={paint.stroke}
-				stroke-width={paint.strokeWidth}
-				cx={geoPathFn.centroid(feature)[0]}
-				cy={geoPathFn.centroid(feature)[1]}
-				r={paint.radius}
-				role="tooltip"
-			></circle>
-		{/each} -->
-	{/if}
+	{#each $data.features as feature}
+		<path
+			class="feature-path"
+			fill="none"
+			stroke={$config.z ? $zGet(feature.properties) : fill}
+			stroke-width={strokeWidth}
+			d={geoPathFn(feature)}
+			role="tooltip"
+		></path>
+	{/each}
 </g>
 
 <style>
