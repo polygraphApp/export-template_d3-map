@@ -92,6 +92,7 @@
  * @property {number} [fillOpacity=1] - The opacity of the fill color.
  * @property {string} [stroke='#000'] - The stroke color for the point features.
  * @property {number} [strokeWidth=1] - The width of the stroke for the point features.
+ * @property {number} [strokeOpacity=1] - The opacity of the stroke for the point features.
  * @property {number} [radius=5] - The radius for circle features.
  */
 
@@ -103,6 +104,7 @@
  * @property {number} [fillOpacity=1] - The opacity of the fill color.
  * @property {string} [stroke='#000'] - The stroke color for the point features.
  * @property {number} [strokeWidth=1] - The width of the stroke for the point features.
+ * @property {number} [strokeOpacity=1] - The opacity of the stroke for the point features.
  * @property {number} [radius=5] - The radius for circle features.
  */
 
@@ -131,6 +133,13 @@
 
 /**
  * @typedef {{fixedAspectRatio: BaseStyleConfig['fixedAspectRatio'], projection: () => import('d3-geo').GeoProjection} & (SimplePolygon | ChoroplethPolygon)} PolygonConfig
+ */
+
+/**
+ * @typedef {{fixedAspectRatio: BaseStyleConfig['fixedAspectRatio'], projection: () => import('d3-geo').GeoProjection} & (SimpleLine | ChoroplethLine)} LineConfig
+ */
+/**
+ * @typedef {{fixedAspectRatio: BaseStyleConfig['fixedAspectRatio'], projection: () => import('d3-geo').GeoProjection} & (SimplePoint | ChoroplethPoint)} PointConfig
  */
 
 export {};

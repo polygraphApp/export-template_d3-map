@@ -9,17 +9,18 @@
 	const { data, width, height, zGet, custom, config } = getContext('LayerCake');
 
 	/**
-	 * @typedef {Object} Props
-	 * @property {() => import('d3-geo').GeoProjection} projection - A function that returns a D3 GeoProjection.
-	 * @property {string} [fill='#fff'] - The fill color of the shape.
-	 * @property {string} [stroke='#000'] - The stroke color of the shape.
-	 * @property {number} [strokeWidth=0.5] - The width of the stroke.
-	 * @property {number} [strokeOpacity=1] - The stroke opacity of the shape.
-	 * @property {number} [fillOpacity=1] - The fill opacity of the shape.
-	 * @property {number} [fixedAspectRatio=undefined] - A fixed aspect ratio for the shape.
+	 * @typedef {import('$lib/types.js').LineConfig} Props
 	 */
+
 	/** @type {Props} */
-	let { projection, fill = '#fff', strokeWidth = 0.5, fixedAspectRatio = undefined } = $props();
+	let {
+		projection,
+		// @ts-ignore
+		stroke = '#fff',
+		strokeWidth = 0.5,
+		strokeOpacity = 1,
+		fixedAspectRatio = undefined
+	} = $props();
 
 	/** @type {[number, number]} */
 	let fitSizeRange = $derived(fixedAspectRatio ? [100, 100 / fixedAspectRatio] : [$width, $height]);
@@ -47,8 +48,9 @@
 		<path
 			class="feature-path"
 			fill="none"
-			stroke={$config.z ? $zGet(feature.properties) : fill}
+			stroke={$config.z ? $zGet(feature.properties) : stroke}
 			stroke-width={strokeWidth}
+			stroke-opacity={strokeOpacity}
 			d={geoPathFn(feature)}
 			role="tooltip"
 		></path>

@@ -9,14 +9,20 @@
 	const { data, width, height, zGet, custom } = getContext('LayerCake');
 
 	/**
-	 * @type {{
-	 *  type: 'polygon' | 'line' | 'point',
-	 *  projection: () => import('d3-geo').GeoProjection,
-	 *  paint: import('$lib/types.js').SimplePolygon | import('$lib/types.js').ChoroplethPolygon | import('$lib/types.js').SimpleLine | import('$lib/types.js').ChoroplethLine | import('$lib/types.js').SimplePoint | import('$lib/types.js').ChoroplethPoint | import('$lib/types.js').SimpleDynamicPoint | import('$lib/types.js').ChoroplethDynamicPoint,
-	 *  fixedAspectRatio?: number
-	 * }}
+	 * @typedef {import('$lib/types.js').PointConfig} Props
 	 */
-	let { type, projection, paint, fixedAspectRatio = undefined } = $props();
+
+	/** @type {Props} */
+	let {
+		projection,
+		// @ts-ignore
+		fill = '#000',
+		stroke = '#fff',
+		strokeWidth = 1,
+		strokeOpacity = 1,
+		radius = 5,
+		fixedAspectRatio = undefined
+	} = $props();
 
 	/** @type {[number, number]} */
 	let fitSizeRange = $derived(fixedAspectRatio ? [100, 100 / fixedAspectRatio] : [$width, $height]);
@@ -45,46 +51,19 @@
 </script>
 
 <g class="map-group" role="tooltip">
-	<!-- Polygons -->
-	{#if type === 'polygon'}
-		{#each $data.features as feature}
-			<path
-				class="feature-path"
-				fill={paint.fill}
-				stroke={paint.stroke}
-				stroke-width={paint.strokeWidth}
-				d={geoPathFn(feature)}
-				role="tooltip"
-				onmouseenter={() => console.log(feature.properties)}
-			></path>
-		{/each}
-		<!-- Lines -->
-	{:else if type === 'line'}
-		<!-- {#each $data.features as feature}
-			<path
-				class="feature-path"
-				fill="none"
-				stroke={paint.fill || $zGet(feature.properties)}
-				stroke-width={paint.strokeWidth}
-				d={geoPathFn(feature)}
-				role="tooltip"
-			></path>
-		{/each} -->
-		<!-- Points -->
-	{:else if type === 'point'}
-		<!-- {#each $data.features as feature}
-			<circle
-				class="feature-path"
-				fill={paint.fill || $zGet(feature.properties)}
-				stroke={paint.stroke}
-				stroke-width={paint.strokeWidth}
-				cx={geoPathFn.centroid(feature)[0]}
-				cy={geoPathFn.centroid(feature)[1]}
-				r={paint.radius}
-				role="tooltip"
-			></circle>
-		{/each} -->
-	{/if}
+	{#each $data.features as feature}
+		<circle
+			class="feature-path"
+			fill={fill || $zGet(feature.properties)}
+			{stroke}
+			stroke-width={strokeWidth}
+			stroke-opacity={strokeOpacity}
+			cx={geoPathFn.centroid(feature)[0]}
+			cy={geoPathFn.centroid(feature)[1]}
+			r={radius}
+			role="tooltip"
+		></circle>
+	{/each}
 </g>
 
 <style>
