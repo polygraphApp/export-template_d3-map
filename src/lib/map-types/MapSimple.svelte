@@ -62,24 +62,17 @@
 			{:else if isLineType(style)}
 				<MapLineSvg {projection} fixedAspectRatio={style.fixedAspectRatio} {...style.paint} />
 			{:else if isPointType(style)}
-				<!-- <MapPointSvg {projection} {paint} /> -->
+				<!-- <MapPointSvg {projection} fixedAspectRatio={style.fixedAspectRatio} {...style.paint} /> -->
 			{/if}
 		</Svg>
 	{:else if style.renderer === 'canvas'}
 		<Canvas>
 			{#if isPolygonType(style)}
-				<MapPolygonCanvas
-					{projection}
-					fill={style.paint.fill}
-					stroke={style.paint.stroke}
-					strokeOpacity={style.paint.strokeOpacity}
-					strokeWidth={style.paint.strokeWidth}
-					fillOpacity={style.paint.fillOpacity}
-				/>
+				<MapPolygonCanvas {projection} fixedAspectRatio={style.fixedAspectRatio} {...style.paint} />
 			{:else if isLineType(style)}
-				<!-- <MapLineCanvas {projection} /> -->
+				<!-- <MapLineCanvas {projection} fixedAspectRatio={style.fixedAspectRatio} {...style.paint} /> -->
 			{:else if isPointType(style)}
-				<!-- <MapPointCanvas {projection} {paint} /> -->
+				<!-- <MapPointCanvas {projection} fixedAspectRatio={style.fixedAspectRatio} {...style.paint} /> -->
 			{/if}
 		</Canvas>
 	{/if}
