@@ -8,6 +8,10 @@
 	// import MapPointSvg from '$lib/layercake-components/svg/MapPoint.svg.svelte';
 
 	import MapPolygonCanvas from '$lib/layercake-components/canvas/MapPolygon.canvas.svelte';
+	import MapLineCanvas from '$lib/layercake-components/canvas/MapLine.canvas.svelte';
+	// import MapPointCanvas from '$lib/layercake-components/canvas/MapPoint.canvas.svelte';
+
+	import { isPolygonType, isLineType, isPointType } from '$lib/modules/typeguards.js';
 
 	/** @typedef {Object} Props
 	 * @property {import('geojson').FeatureCollection} geojson
@@ -45,7 +49,13 @@
 		</Svg>
 	{:else if style.renderer === 'canvas'}
 		<Canvas>
-			<MapPolygonCanvas {projection} fixedAspectRatio={style.fixedAspectRatio} {...style.paint} />
+			{#if isPolygonType(style)}
+				<MapPolygonCanvas {projection} fixedAspectRatio={style.fixedAspectRatio} {...style.paint} />
+			{:else if isLineType(style)}
+				<MapLineCanvas {projection} fixedAspectRatio={style.fixedAspectRatio} {...style.paint} />
+			{:else if isPointType(style)}
+				<!-- <MapPointCanvas {projection} fixedAspectRatio={style.fixedAspectRatio} {...style.paint} /> -->
+			{/if}
 		</Canvas>
 	{/if}
 </LayerCake>

@@ -7,6 +7,9 @@
 	// import MapPointSvg from '$lib/layercake-components/MapPoint.svg.svelte';
 
 	import MapPolygonCanvas from '$lib/layercake-components/canvas/MapPolygon.canvas.svelte';
+	import MapLineCanvas from '$lib/layercake-components/canvas/MapLine.canvas.svelte';
+
+	import { isPolygonType, isLineType, isPointType } from '$lib/modules/typeguards.js';
 
 	/**
 	 * @typedef {Object} Props
@@ -21,33 +24,6 @@
 	/** @type {() => import('d3-geo').GeoProjection} */
 	// @ts-ignore
 	const projection = d3Geo[style.projection];
-
-	/**
-	 * Typeguard for SimplePolygonConfig
-	 * @param {import('$lib/types.js').SimplePolygonConfig | import('$lib/types.js').SimpleLineConfig | import('$lib/types.js').SimplePointConfig} style
-	 * @returns {style is import('$lib/types.js').SimplePolygonConfig}
-	 */
-	function isPolygonType(style) {
-		return style.type === 'polygon';
-	}
-
-	/**
-	 * Typeguard for SimpleLineConfig
-	 * @param {import('$lib/types.js').SimplePolygonConfig | import('$lib/types.js').SimpleLineConfig | import('$lib/types.js').SimplePointConfig} style
-	 * @returns {style is import('$lib/types.js').SimpleLineConfig}
-	 */
-	function isLineType(style) {
-		return style.type === 'line';
-	}
-
-	/**
-	 * Typeguard for SimplePointConfig
-	 * @param {import('$lib/types.js').SimplePolygonConfig | import('$lib/types.js').SimpleLineConfig | import('$lib/types.js').SimplePointConfig} style
-	 * @returns {style is import('$lib/types.js').SimplePointConfig}
-	 */
-	function isPointType(style) {
-		return style.type === 'point';
-	}
 </script>
 
 <LayerCake
@@ -73,7 +49,7 @@
 			{#if isPolygonType(style)}
 				<MapPolygonCanvas {projection} fixedAspectRatio={style.fixedAspectRatio} {...style.paint} />
 			{:else if isLineType(style)}
-				<!-- <MapLineCanvas {projection} fixedAspectRatio={style.fixedAspectRatio} {...style.paint} /> -->
+				<MapLineCanvas {projection} fixedAspectRatio={style.fixedAspectRatio} {...style.paint} />
 			{:else if isPointType(style)}
 				<!-- <MapPointCanvas {projection} fixedAspectRatio={style.fixedAspectRatio} {...style.paint} /> -->
 			{/if}

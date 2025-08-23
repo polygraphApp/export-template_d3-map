@@ -5,6 +5,7 @@
 	import MapDynamicPointSimple from '$lib/map-types/MapDynamicPointSimple.svelte';
 
 	import loadLayers from '$lib/modules/loadLayers.js';
+	import { isChoropleth } from '$lib/modules/typeguards.js';
 
 	/** @typedef {import('topojson-specification').Topology} */
 	import usStates from './_data/topojson/us-states.json';
@@ -34,12 +35,19 @@
 		},
 		// Lines
 		{ name: 'Single color line', layers: [{ topodata: lineSegments, style: lineSingleColor }] },
-		{ name: 'Choropleth line', layers: [{ topodata: lineSegments, style: lineChoropleth }] }
+		{ name: 'Choropleth line', layers: [{ topodata: lineSegments, style: lineChoropleth }] },
+
+		{
+			name: 'Single color line (Canvas)',
+			layers: [{ topodata: lineSegments, style: { ...lineSingleColor, renderer: 'canvas' } }]
+		},
+		{
+			name: 'Choropleth line (Canvas)',
+			layers: [{ topodata: lineSegments, style: { ...lineChoropleth, renderer: 'canvas' } }]
+		}
 
 		// @ts-ignore
 	].map(loadLayers);
-
-	console.log(allMapExamples);
 </script>
 
 <div class="wrapper">
@@ -50,12 +58,12 @@
 			<div class="item" data-label={example.name}>
 				{#each example.layers as { geojson, style }}
 					{#if style.type === 'point' && style.paint && 'radiusKey' in style.paint}
-						{#if 'fillKey' in style.paint}
+						{#if isChoropleth(style)}
 							<MapDynamicPointChoropleth bounds={example.bounds} {geojson} {style} />
 						{:else}
 							<MapDynamicPointSimple bounds={example.bounds} {geojson} {style} />
 						{/if}
-					{:else if style.paint && 'fillKey' in style.paint}
+					{:else if isChoropleth(style)}
 						<MapChoropleth bounds={example.bounds} {geojson} {style} />
 					{:else if style.paint}
 						<MapSimple bounds={example.bounds} {geojson} {style} />
