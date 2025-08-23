@@ -4,7 +4,6 @@
  -->
 <script>
 	import { getContext } from 'svelte';
-	import { geoPath } from 'd3-geo';
 
 	const { data, width, height, zGet, custom, config } = getContext('LayerCake');
 

@@ -5,7 +5,6 @@
 <script>
 	import { getContext, onMount, untrack } from 'svelte';
 	import { scaleCanvas } from 'layercake';
-	import { geoPath } from 'd3-geo';
 
 	const { data, width, height, config, zGet, custom } = getContext('LayerCake');
 
@@ -24,10 +23,11 @@
 	/** @type {Props} */
 	let {
 		projection,
-		fill = '#fff',
-		stroke = '#000',
+		fill = '#000',
+		stroke = '#fff',
 		strokeWidth = 0.5,
 		fillOpacity = 1,
+		radius = 5,
 		fixedAspectRatio = undefined
 	} = $props();
 
@@ -49,7 +49,6 @@
 	});
 
 	let projectionFn = $derived(projection().fitSize(fitSizeRange, boundsFeature));
-	let geoPathFn = $derived(geoPath(projectionFn).context($ctx));
 
 	onMount(() => {
 		$effect(() => {
@@ -62,12 +61,14 @@
 
 					$data.features.forEach(feature => {
 						$ctx.beginPath();
-						geoPathFn(feature);
+						const coordinates = projectionFn(feature.geometry.coordinates);
+						if (coordinates === null) return;
+
+						$ctx.arc(coordinates[0], coordinates[1], radius, 0, 2 * Math.PI, false);
 						$ctx.fillStyle = $config.z ? $zGet(feature.properties) : fill;
-						$ctx.fillOpacity = fillOpacity;
 						$ctx.fill();
-						$ctx.strokeStyle = stroke;
 						$ctx.lineWidth = strokeWidth;
+						$ctx.strokeStyle = stroke;
 						$ctx.stroke();
 					});
 					$ctx.globalAlpha = stashedAlpha;

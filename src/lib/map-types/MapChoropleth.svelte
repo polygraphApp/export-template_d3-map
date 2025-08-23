@@ -9,7 +9,7 @@
 
 	import MapPolygonCanvas from '$lib/layercake-components/canvas/MapPolygon.canvas.svelte';
 	import MapLineCanvas from '$lib/layercake-components/canvas/MapLine.canvas.svelte';
-	// import MapPointCanvas from '$lib/layercake-components/canvas/MapPoint.canvas.svelte';
+	import MapPointCanvas from '$lib/layercake-components/canvas/MapPoint.canvas.svelte';
 
 	import { isPolygonType, isLineType, isPointType } from '$lib/modules/typeguards.js';
 
@@ -54,7 +54,7 @@
 			{:else if isLineType(style)}
 				<MapLineCanvas {projection} fixedAspectRatio={style.fixedAspectRatio} {...style.paint} />
 			{:else if isPointType(style)}
-				<!-- <MapPointCanvas {projection} fixedAspectRatio={style.fixedAspectRatio} {...style.paint} /> -->
+				<MapPointCanvas {projection} fixedAspectRatio={style.fixedAspectRatio} {...style.paint} />
 			{/if}
 		</Canvas>
 	{/if}
