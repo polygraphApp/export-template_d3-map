@@ -8,25 +8,38 @@
 
 	/** @typedef {import('topojson-specification').Topology} */
 	import usStates from './_data/topojson/us-states.json';
+	/** @typedef {import('topojson-specification').Topology} */
+	import lineSegments from './_data/topojson/line-segments.json';
+
 	/** @typedef {import('$lib/types.js').MapStyleConfig} */
 	import polygonSingleColor from './_data/style/polygon-singlecolor.style.json';
 	/** @typedef {import('$lib/types.js').MapStyleConfig} */
 	import polygonChoropleth from './_data/style/polygon-choropleth.style.json';
+	/** @typedef {import('$lib/types.js').MapStyleConfig} */
+	import lineSingleColor from './_data/style/linesegments-singlecolor.style.json';
+	/** @typedef {import('$lib/types.js').MapStyleConfig} */
+	import lineChoropleth from './_data/style/linesegments-choropleth.style.json';
 
 	const allMapExamples = [
-		{ name: 'Single Color', layers: [{ topodata: usStates, style: polygonSingleColor }] },
-		{ name: 'Choropleth', layers: [{ topodata: usStates, style: polygonChoropleth }] },
+		// Polygons
+		{ name: 'Single color polygon', layers: [{ topodata: usStates, style: polygonSingleColor }] },
+		{ name: 'Choropleth polygon', layers: [{ topodata: usStates, style: polygonChoropleth }] },
 		{
-			name: 'Single Color (Canvas)',
+			name: 'Single color polygon (Canvas)',
 			layers: [{ topodata: usStates, style: { ...polygonSingleColor, renderer: 'canvas' } }]
 		},
 		{
-			name: 'Choropleth (Canvas)',
+			name: 'Choropleth polygon (Canvas)',
 			layers: [{ topodata: usStates, style: { ...polygonChoropleth, renderer: 'canvas' } }]
-		}
+		},
+		// Lines
+		{ name: 'Single color line', layers: [{ topodata: lineSegments, style: lineSingleColor }] },
+		{ name: 'Choropleth line', layers: [{ topodata: lineSegments, style: lineChoropleth }] }
 
 		// @ts-ignore
 	].map(loadLayers);
+
+	console.log(allMapExamples);
 </script>
 
 <div class="wrapper">
@@ -36,15 +49,15 @@
 		{#each allMapExamples as example}
 			<div class="item" data-label={example.name}>
 				{#each example.layers as { geojson, style }}
-					{#if style.type === 'point' && 'radiusKey' in style.paint}
+					{#if style.type === 'point' && style.paint && 'radiusKey' in style.paint}
 						{#if 'fillKey' in style.paint}
 							<MapDynamicPointChoropleth bounds={example.bounds} {geojson} {style} />
 						{:else}
 							<MapDynamicPointSimple bounds={example.bounds} {geojson} {style} />
 						{/if}
-					{:else if 'fillKey' in style.paint}
+					{:else if style.paint && 'fillKey' in style.paint}
 						<MapChoropleth bounds={example.bounds} {geojson} {style} />
-					{:else}
+					{:else if style.paint}
 						<MapSimple bounds={example.bounds} {geojson} {style} />
 					{/if}
 				{/each}

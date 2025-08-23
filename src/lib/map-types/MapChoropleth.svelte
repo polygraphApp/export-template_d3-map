@@ -4,16 +4,16 @@
 	import { scaleThreshold } from 'd3-scale';
 
 	import MapPolygonSvg from '$lib/layercake-components/svg/MapPolygon.svg.svelte';
-	// import MapLineSvg from '$lib/layercake-components/MapLine.svg.svelte';
-	// import MapPointSvg from '$lib/layercake-components/MapPoint.svg.svelte';
+	import MapLineSvg from '$lib/layercake-components/svg/MapLine.svg.svelte';
+	// import MapPointSvg from '$lib/layercake-components/svg/MapPoint.svg.svelte';
 
 	import MapPolygonCanvas from '$lib/layercake-components/canvas/MapPolygon.canvas.svelte';
 
 	/** @type {{
-    geojson: import('geojson').FeatureCollection,
-    style: import('$lib/types.js').StyleConfig,
+		geojson: import('geojson').FeatureCollection,
+		style: import('$lib/types.js').ChoroplethPolygonConfig | import('$lib/types.js').ChoroplethLineConfig | import('$lib/types.js').ChoroplethPointConfig,
 		bounds: [[number, number], [number, number]]
-  }} */
+	}} */
 	let { geojson, style, bounds } = $props();
 
 	/** @type {() => import('d3-geo').GeoProjection} */
@@ -28,34 +28,22 @@
 	zScale={scaleThreshold()}
 	zDomain={style.paint.fillDomain}
 	zRange={style.paint.fillRange}
-	flatData={geojson.features.filter(d => d.properties !== null).map(d => d.properties)}
+	flatData={geojson.features.map(d => d.properties).filter(d => d !== null && d !== undefined)}
 	custom={{ bounds }}
 >
 	{#if style.renderer === 'svg'}
 		<Svg>
 			{#if style.type === 'polygon'}
-				<MapPolygonSvg
-					{projection}
-					stroke={style.paint.stroke}
-					strokeOpacity={style.paint.strokeOpacity}
-					strokeWidth={style.paint.strokeWidth}
-					fillOpacity={style.paint.fillOpacity}
-				/>
+				<MapPolygonSvg {projection} fixedAspectRatio={style.fixedAspectRatio} {...style.paint} />
 			{:else if style.type === 'line'}
-				<!-- <MapLineSvg {projection} /> -->
+				<MapLineSvg {projection} fixedAspectRatio={style.fixedAspectRatio} {...style.paint} />
 			{:else if style.type === 'point'}
-				<!-- <MapPointSvg {projection} {paint} /> -->
+				<!-- <MapPointSvg {projection} fixedAspectRatio={style.fixedAspectRatio} {...style.paint} /> -->
 			{/if}
 		</Svg>
 	{:else if style.renderer === 'canvas'}
 		<Canvas>
-			<MapPolygonCanvas
-				{projection}
-				stroke={style.paint.stroke}
-				strokeOpacity={style.paint.strokeOpacity}
-				strokeWidth={style.paint.strokeWidth}
-				fillOpacity={style.paint.fillOpacity}
-			/>
+			<MapPolygonCanvas {projection} fixedAspectRatio={style.fixedAspectRatio} {...style.paint} />
 		</Canvas>
 	{/if}
 </LayerCake>

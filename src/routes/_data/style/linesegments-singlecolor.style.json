@@ -1,8 +1,10 @@
 {
 	"type": "line",
-	"svg": true,
 	"projection": "geoMercator",
-	"strokeWidth": 2,
-	"stroke": "#42bd00",
-	"fill": "#42bd00"
+	"renderer": "svg",
+	"paint": {
+		"strokeWidth": 2,
+		"stroke": "#42bd00",
+		"fill": "#42bd00"
+	}
 }
