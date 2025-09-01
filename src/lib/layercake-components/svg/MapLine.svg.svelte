@@ -6,6 +6,16 @@
 	import { getContext } from 'svelte';
 	import { geoPath } from 'd3-geo';
 
+	/**
+	 * @type {{
+	 * data: import('svelte/store').Writable<import('geojson').FeatureCollection<import('geojson').LineString|import('geojson').MultiLineString>>
+	 * width: import('svelte/store').Writable<number>
+	 * height: import('svelte/store').Writable<number>
+	 * config: import('svelte/store').Writable<{z?: () => number}>
+	 * zGet: import('svelte/store').Writable<(feature: import('geojson').GeoJsonProperties) => number>
+	 * custom: import('svelte/store').Writable<Record<string, any>>
+	 * }} LayerCakeContext
+	 */
 	const { data, width, height, zGet, custom, config } = getContext('LayerCake');
 
 	/**

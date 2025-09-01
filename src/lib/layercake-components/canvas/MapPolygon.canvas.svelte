@@ -7,6 +7,16 @@
 	import { scaleCanvas } from 'layercake';
 	import { geoPath } from 'd3-geo';
 
+	/**
+	 * @type {{
+	 * data: import('svelte/store').Writable<import('geojson').FeatureCollection<import('geojson').Polygon|import('geojson').MultiPolygon>>
+	 * width: import('svelte/store').Writable<number>
+	 * height: import('svelte/store').Writable<number>
+	 * config: import('svelte/store').Writable<{z?: () => number}>
+	 * zGet: import('svelte/store').Writable<(feature: import('geojson').GeoJsonProperties) => number>
+	 * custom: import('svelte/store').Writable<Record<string, any>>
+	 * }} LayerCakeContext
+	 */
 	const { data, width, height, config, zGet, custom } = getContext('LayerCake');
 
 	const { ctx } = getContext('canvas');

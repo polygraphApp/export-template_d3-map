@@ -6,23 +6,28 @@
 	import { getContext, onMount, untrack } from 'svelte';
 	import { scaleCanvas } from 'layercake';
 
+	/**
+	 * @type {{
+	 * data: import('svelte/store').Writable<import('geojson').FeatureCollection<import('geojson').Point|import('geojson').MultiPoint>>
+	 * width: import('svelte/store').Writable<number>
+	 * height: import('svelte/store').Writable<number>
+	 * config: import('svelte/store').Writable<{z?: () => number}>
+	 * zGet: import('svelte/store').Writable<(feature: import('geojson').GeoJsonProperties) => number>
+	 * custom: import('svelte/store').Writable<Record<string, any>>
+	 * }} LayerCakeContext
+	 */
 	const { data, width, height, config, zGet, custom } = getContext('LayerCake');
 
 	const { ctx } = getContext('canvas');
 
 	/**
-	 * @typedef {Object} Props
-	 * @property {() => import('d3-geo').GeoProjection} projection - A function that returns a D3 GeoProjection.
-	 * @property {string} [fill='#fff'] - The fill color of the shape.
-	 * @property {string} [stroke='#000'] - The stroke color of the shape.
-	 * @property {number} [strokeWidth=0.5] - The width of the stroke.
-	 * @property {number} [strokeOpacity=1] - The stroke opacity of the shape.
-	 * @property {number} [fillOpacity=1] - The fill opacity of the shape.
-	 * @property {number} [fixedAspectRatio=undefined] - A fixed aspect ratio for the shape.
+	 * @typedef {import('$lib/types.js').PointConfig} Props
 	 */
+
 	/** @type {Props} */
 	let {
 		projection,
+		// @ts-ignore
 		fill = '#000',
 		stroke = '#fff',
 		strokeWidth = 0.5,
@@ -50,6 +55,24 @@
 
 	let projectionFn = $derived(projection().fitSize(fitSizeRange, boundsFeature));
 
+	/**
+	 * Helper function to draw a single point
+	 * @param {import('geojson').Position} pointCoords - The coordinates of the point
+	 * @param {import('geojson').Feature} feature - The feature for styling
+	 */
+	function drawPoint(pointCoords, feature) {
+		$ctx.beginPath();
+		const coordinates = projectionFn([pointCoords[0], pointCoords[1]]);
+		if (coordinates === null) return;
+
+		$ctx.arc(coordinates[0], coordinates[1], radius, 0, 2 * Math.PI, false);
+		$ctx.fillStyle = $config.z ? $zGet(feature.properties) : fill;
+		$ctx.fill();
+		$ctx.lineWidth = strokeWidth;
+		$ctx.strokeStyle = stroke;
+		$ctx.stroke();
+	}
+
 	onMount(() => {
 		$effect(() => {
 			if ($width && $height) {
@@ -60,16 +83,15 @@
 					$ctx.globalAlpha = fillOpacity;
 
 					$data.features.forEach(feature => {
-						$ctx.beginPath();
-						const coordinates = projectionFn(feature.geometry.coordinates);
-						if (coordinates === null) return;
+						const geometry = feature.geometry;
 
-						$ctx.arc(coordinates[0], coordinates[1], radius, 0, 2 * Math.PI, false);
-						$ctx.fillStyle = $config.z ? $zGet(feature.properties) : fill;
-						$ctx.fill();
-						$ctx.lineWidth = strokeWidth;
-						$ctx.strokeStyle = stroke;
-						$ctx.stroke();
+						if (geometry.type === 'Point') {
+							drawPoint(geometry.coordinates, feature);
+						} else if (geometry.type === 'MultiPoint') {
+							geometry.coordinates.forEach(pointCoords => {
+								drawPoint(pointCoords, feature);
+							});
+						}
 					});
 					$ctx.globalAlpha = stashedAlpha;
 				});

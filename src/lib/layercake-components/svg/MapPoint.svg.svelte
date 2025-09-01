@@ -5,6 +5,16 @@
 <script>
 	import { getContext } from 'svelte';
 
+	/**
+	 * @type {{
+	 * data: import('svelte/store').Writable<import('geojson').FeatureCollection<import('geojson').Point|import('geojson').MultiPoint>>
+	 * width: import('svelte/store').Writable<number>
+	 * height: import('svelte/store').Writable<number>
+	 * config: import('svelte/store').Writable<{z?: () => number}>
+	 * zGet: import('svelte/store').Writable<(feature: import('geojson').GeoJsonProperties) => number>
+	 * custom: import('svelte/store').Writable<Record<string, any>>
+	 * }} LayerCakeContext
+	 */
 	const { data, width, height, zGet, custom, config } = getContext('LayerCake');
 
 	/**
@@ -48,21 +58,34 @@
 	let projectionFn = $derived(projection().fitSize(fitSizeRange, boundsFeature));
 </script>
 
+{#snippet drawPoint(
+	/** @type {import('geojson').Position} */ pointCoords,
+	/** @type {import('geojson').Feature<import('geojson').Point|import('geojson').MultiPoint>} */ feature
+)}
+	{@const coords = projectionFn([pointCoords[0], pointCoords[1]])}
+	{#if coords}
+		<circle
+			class="feature-path"
+			fill={$config.z ? $zGet(feature.properties) : fill}
+			{stroke}
+			stroke-width={strokeWidth}
+			stroke-opacity={strokeOpacity}
+			cx={coords[0]}
+			cy={coords[1]}
+			r={radius}
+			role="tooltip"
+		></circle>
+	{/if}
+{/snippet}
+
 <g class="map-group" role="tooltip">
 	{#each $data.features as feature}
-		{@const coords = projectionFn(feature.geometry.coordinates)}
-		{#if coords}
-			<circle
-				class="feature-path"
-				fill={$config.z ? $zGet(feature.properties) : fill}
-				{stroke}
-				stroke-width={strokeWidth}
-				stroke-opacity={strokeOpacity}
-				cx={coords[0]}
-				cy={coords[1]}
-				r={radius}
-				role="tooltip"
-			></circle>
+		{#if feature.geometry.type === 'Point'}
+			{@render drawPoint(feature.geometry.coordinates, feature)}
+		{:else if feature.geometry.type === 'MultiPoint'}
+			{#each feature.geometry.coordinates as pointCoords}
+				{@render drawPoint(pointCoords, feature)}
+			{/each}
 		{/if}
 	{/each}
 </g>

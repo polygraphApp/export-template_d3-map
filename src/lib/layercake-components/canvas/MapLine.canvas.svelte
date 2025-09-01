@@ -7,24 +7,29 @@
 	import { scaleCanvas } from 'layercake';
 	import { geoPath } from 'd3-geo';
 
+	/**
+	 * @type {{
+	 * data: import('svelte/store').Writable<import('geojson').FeatureCollection<import('geojson').LineString|import('geojson').MultiLineString>>
+	 * width: import('svelte/store').Writable<number>
+	 * height: import('svelte/store').Writable<number>
+	 * config: import('svelte/store').Writable<{z?: () => number}>
+	 * zGet: import('svelte/store').Writable<(feature: import('geojson').GeoJsonProperties) => number>
+	 * custom: import('svelte/store').Writable<Record<string, any>>
+	 * }} LayerCakeContext
+	 */
 	const { data, width, height, config, zGet, custom } = getContext('LayerCake');
 
 	const { ctx } = getContext('canvas');
 
 	/**
-	 * @typedef {Object} Props
-	 * @property {() => import('d3-geo').GeoProjection} projection - A function that returns a D3 GeoProjection.
-	 * @property {string} [fill='#fff'] - The fill color of the shape.
-	 * @property {string} [stroke='#000'] - The stroke color of the shape.
-	 * @property {number} [strokeWidth=0.5] - The width of the stroke.
-	 * @property {number} [strokeOpacity=1] - The stroke opacity of the shape.
-	 * @property {number} [fillOpacity=1] - The fill opacity of the shape.
-	 * @property {number} [fixedAspectRatio=undefined] - A fixed aspect ratio for the shape.
+	 * @typedef {import('$lib/types.js').LineConfig} Props
 	 */
+
 	/** @type {Props} */
 	let {
 		projection,
-		stroke = '#000',
+		// @ts-ignore
+		stroke = '#fff',
 		strokeWidth = 0.5,
 		strokeOpacity = 1,
 		fixedAspectRatio = undefined
