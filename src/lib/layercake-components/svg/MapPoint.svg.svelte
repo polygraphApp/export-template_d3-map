@@ -81,11 +81,15 @@
 <g class="map-group" role="tooltip">
 	{#each $data.features as feature}
 		{#if feature.geometry.type === 'Point'}
-			{@render drawPoint(feature.geometry.coordinates, feature)}
+			<g class="map-point">
+				{@render drawPoint(feature.geometry.coordinates, feature)}
+			</g>
 		{:else if feature.geometry.type === 'MultiPoint'}
-			{#each feature.geometry.coordinates as pointCoords}
-				{@render drawPoint(pointCoords, feature)}
-			{/each}
+			<g class="map-point">
+				{#each feature.geometry.coordinates as pointCoords}
+					{@render drawPoint(pointCoords, feature)}
+				{/each}
+			</g>
 		{/if}
 	{/each}
 </g>
@@ -95,7 +99,7 @@
     stroke: #333;
     stroke-width: 0.5px;
   } */
-	.feature-path:hover {
+	.map-point:hover .feature-path {
 		stroke: #000;
 		stroke-width: 2px;
 	}

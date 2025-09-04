@@ -14,6 +14,13 @@
 	/** @typedef {import('topojson-specification').Topology} */
 	import points from './_data/topojson/points.json';
 
+	/** @typedef {import('topojson-specification').Topology} */
+	import multiPolygons from './_data/topojson/multipolygons.json';
+	/** @typedef {import('topojson-specification').Topology} */
+	import multiPoints from './_data/topojson/multipoints.json';
+	/** @typedef {import('topojson-specification').Topology} */
+	import multilines from './_data/topojson/multilinestrings.json';
+
 	/** @typedef {import('$lib/types.js').MapStyleConfig} */
 	import polygonSingleColor from './_data/style/polygon-singlecolor.style.json';
 	/** @typedef {import('$lib/types.js').MapStyleConfig} */
@@ -61,12 +68,36 @@
 		{
 			name: 'Choropleth point (Canvas)',
 			layers: [{ topodata: points, style: { ...pointChoropleth, renderer: 'canvas' } }]
+		},
+
+		// Multigeometry examples
+		{
+			name: 'Single color multipolygon',
+			layers: [{ topodata: multiPolygons, style: polygonSingleColor }]
+		},
+		{
+			name: 'Single color multipolygon (canvas)',
+			layers: [{ topodata: multiPolygons, style: { ...polygonSingleColor, renderer: 'canvas' } }]
+		},
+		{
+			name: 'Single color multipoint',
+			layers: [{ topodata: multiPoints, style: pointSingleColor }]
+		},
+		{
+			name: 'Single color multipoint (canvas)',
+			layers: [{ topodata: multiPoints, style: { ...pointSingleColor, renderer: 'canvas' } }]
+		},
+		{
+			name: 'Single color multiline',
+			layers: [{ topodata: multilines, style: lineSingleColor }]
+		},
+		{
+			name: 'Single color multiline (canvas)',
+			layers: [{ topodata: multilines, style: { ...lineSingleColor, renderer: 'canvas' } }]
 		}
 
 		// @ts-ignore
 	].map(loadLayers);
-
-	console.log(allMapExamples);
 </script>
 
 <div class="wrapper">
