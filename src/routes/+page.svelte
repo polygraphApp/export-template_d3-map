@@ -33,6 +33,8 @@
 	import pointSingleColor from './_data/style/point-singlecolor.style.json';
 	/** @typedef {import('$lib/types.js').MapStyleConfig} */
 	import pointChoropleth from './_data/style/point-choropleth.style.json';
+	/** @typedef {import('$lib/types.js').MapStyleConfig} */
+	import multipolygonChoropleth from './_data/style/multipolygon-choropleth.style.json';
 
 	const allMapExamples = [
 		// Polygons
@@ -76,9 +78,20 @@
 			layers: [{ topodata: multiPolygons, style: polygonSingleColor }]
 		},
 		{
+			name: 'Choropleth multipolygon',
+			layers: [{ topodata: multiPolygons, style: multipolygonChoropleth }]
+		},
+		{
 			name: 'Single color multipolygon (canvas)',
 			layers: [{ topodata: multiPolygons, style: { ...polygonSingleColor, renderer: 'canvas' } }]
 		},
+		{
+			name: 'Choropleth multipolygon (canvas)',
+			layers: [
+				{ topodata: multiPolygons, style: { ...multipolygonChoropleth, renderer: 'canvas' } }
+			]
+		},
+
 		{
 			name: 'Single color multipoint',
 			layers: [{ topodata: multiPoints, style: pointSingleColor }]
