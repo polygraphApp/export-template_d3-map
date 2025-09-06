@@ -3,6 +3,7 @@
 	"renderer": "svg",
 	"projection": "geoAlbersUsa",
 	"paint": {
+		"type": "sequential",
 		"outline": "#000",
 		"radius": 5,
 		"fillKey": "x_point",

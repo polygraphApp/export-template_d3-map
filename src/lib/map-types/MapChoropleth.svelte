@@ -1,7 +1,7 @@
 <script>
 	import { LayerCake, Svg, Canvas } from 'layercake';
 	import * as d3Geo from 'd3-geo';
-	import { scaleThreshold } from 'd3-scale';
+	import { scaleThreshold, scaleOrdinal } from 'd3-scale';
 
 	import MapPolygonSvg from '$lib/layercake-components/svg/MapPolygon.svg.svelte';
 	import MapLineSvg from '$lib/layercake-components/svg/MapLine.svg.svelte';
@@ -31,7 +31,7 @@
 	position="absolute"
 	data={geojson}
 	z={style.paint.fillKey}
-	zScale={scaleThreshold()}
+	zScale={style.paint.type === 'sequential' ? scaleThreshold() : scaleOrdinal()}
 	zDomain={style.paint.fillDomain}
 	zRange={style.paint.fillRange}
 	flatData={geojson.features.map(d => d.properties).filter(d => d !== null && d !== undefined)}
