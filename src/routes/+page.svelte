@@ -35,6 +35,10 @@
 	import pointChoropleth from './_data/style/point-choropleth.style.json';
 	/** @typedef {import('$lib/types.js').MapStyleConfig} */
 	import multipolygonChoropleth from './_data/style/multipolygon-choropleth.style.json';
+	/** @typedef {import('$lib/types.js').MapStyleConfig} */
+	import multipointChoropleth from './_data/style/multipoint-choropleth.style.json';
+	/** @typedef {import('$lib/types.js').MapStyleConfig} */
+	// import multilineChoropleth from './_data/style/multilinestrings-choropleth.style.json';
 
 	const allMapExamples = [
 		// Polygons
@@ -97,12 +101,28 @@
 			layers: [{ topodata: multiPoints, style: pointSingleColor }]
 		},
 		{
+			name: 'Choropleth multipoint',
+			layers: [{ topodata: multiPoints, style: multipointChoropleth }]
+		},
+		{
 			name: 'Single color multipoint (canvas)',
 			layers: [{ topodata: multiPoints, style: { ...pointSingleColor, renderer: 'canvas' } }]
 		},
 		{
+			name: 'Choropleth multipoint (canvas)',
+			layers: [{ topodata: multiPoints, style: { ...multipointChoropleth, renderer: 'canvas' } }]
+		},
+		{
 			name: 'Single color multiline',
 			layers: [{ topodata: multilines, style: lineSingleColor }]
+		},
+		{
+			name: 'Choropleth multiline',
+			layers: [{ topodata: multilines, style: lineSingleColor }]
+		},
+		{
+			name: 'Single color multiline (canvas)',
+			layers: [{ topodata: multilines, style: { ...lineSingleColor, renderer: 'canvas' } }]
 		},
 		{
 			name: 'Single color multiline (canvas)',

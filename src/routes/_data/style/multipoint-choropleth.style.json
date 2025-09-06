@@ -1,0 +1,12 @@
+{
+	"type": "point",
+	"renderer": "svg",
+	"projection": "geoAlbersUsa",
+	"paint": {
+		"outline": "#000",
+		"radius": 5,
+		"fillKey": "total_population",
+		"fillDomain": [50000, 150000, 300000, 600000, 1200000, 2400000],
+		"fillRange": ["#440154", "#481c6e", "#228b8d", "#56c667", "#aadc32", "#fde725"]
+	}
+}
