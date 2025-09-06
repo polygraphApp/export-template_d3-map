@@ -3,7 +3,7 @@
 	"renderer": "svg",
 	"projection": "geoMercator",
 	"paint": {
-		"type": "sequential",
+		"type": "continuous",
 		"strokeWidth": 2,
 		"fillKey": "x_point",
 		"fillDomain": [

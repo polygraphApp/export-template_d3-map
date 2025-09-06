@@ -31,7 +31,7 @@
 	position="absolute"
 	data={geojson}
 	z={style.paint.fillKey}
-	zScale={style.paint.type === 'sequential' ? scaleThreshold() : scaleOrdinal()}
+	zScale={style.paint.type === 'continuous' ? scaleThreshold() : scaleOrdinal()}
 	zDomain={style.paint.fillDomain}
 	zRange={style.paint.fillRange}
 	flatData={geojson.features.map(d => d.properties).filter(d => d !== null && d !== undefined)}

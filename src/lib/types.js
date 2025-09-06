@@ -61,7 +61,7 @@
 
 /**
  * @typedef {Object} ChoroplethPolygon
- * @property {string} type - The type of choropleth map ('sequential', 'diverging', 'categorical')
+ * @property {'continuous' | 'categorical'} type - The type of choropleth map
  * @property {string} fillKey - For choropleth maps, the field to color by
  * @property {Array<any>} fillDomain - The domain for the color scale.
  * @property {Array<any>} fillRange - The range for the color scale.
@@ -80,7 +80,7 @@
 
 /**
  * @typedef {Object} ChoroplethLine
- * @property {string} type - The type of choropleth map ('sequential', 'diverging', 'categorical')
+ * @property {'continuous' | 'categorical'} type - The type of choropleth map
  * @property {string} fillKey - For choropleth maps, the field to color by
  * @property {Array<any>} fillDomain - The domain for the color scale.
  * @property {Array<any>} fillRange - The range for the color scale.
@@ -100,7 +100,7 @@
 
 /**
  * @typedef {Object} ChoroplethPoint
- * @property {string} type - The type of choropleth map ('sequential', 'diverging', 'categorical')
+ * @property {'continuous' | 'categorical'} type - The type of choropleth map
  * @property {string} fillKey - For choropleth maps, the field to color by
  * @property {Array<any>} fillDomain - The domain for the color scale.
  * @property {Array<any>} fillRange - The range for the color scale.
@@ -123,7 +123,7 @@
  */
 /**
  * @typedef {Object} ChoroplethDynamicPoint - a point with dynamic radius
- * @property {'categorical' | 'sequential'} type - The type of choropleth map
+ * @property {'continuous'|'categorical'} type - The type of choropleth map
  * @property {string} fillKey - For choropleth maps, the field to color by
  * @property {Array<any>} fillDomain - The domain for the color scale.
  * @property {Array<any>} fillRange - The range for the color scale.
