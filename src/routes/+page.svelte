@@ -38,7 +38,7 @@
 	/** @typedef {import('$lib/types.js').MapStyleConfig} */
 	import multipointChoropleth from './_data/style/multipoint-choropleth.style.json';
 	/** @typedef {import('$lib/types.js').MapStyleConfig} */
-	// import multilineChoropleth from './_data/style/multilinestrings-choropleth.style.json';
+	import multilineChoropleth from './_data/style/multilinestrings-choropleth.style.json';
 
 	const allMapExamples = [
 		// Polygons
@@ -118,15 +118,15 @@
 		},
 		{
 			name: 'Choropleth multiline',
-			layers: [{ topodata: multilines, style: lineSingleColor }]
+			layers: [{ topodata: multilines, style: multilineChoropleth }]
 		},
 		{
 			name: 'Single color multiline (canvas)',
 			layers: [{ topodata: multilines, style: { ...lineSingleColor, renderer: 'canvas' } }]
 		},
 		{
-			name: 'Single color multiline (canvas)',
-			layers: [{ topodata: multilines, style: { ...lineSingleColor, renderer: 'canvas' } }]
+			name: 'Choropleth multiline (canvas)',
+			layers: [{ topodata: multilines, style: { ...multilineChoropleth, renderer: 'canvas' } }]
 		}
 
 		// @ts-ignore
