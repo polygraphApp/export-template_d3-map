@@ -123,7 +123,7 @@
  */
 /**
  * @typedef {Object} ChoroplethDynamicPoint - a point with dynamic radius
- * @property {'continuous'|'categorical'} type - The type of choropleth map
+ * @property {'continuous' | 'categorical'} type - The type of choropleth map
  * @property {string} fillKey - For choropleth maps, the field to color by
  * @property {Array<any>} fillDomain - The domain for the color scale.
  * @property {Array<any>} fillRange - The range for the color scale.
