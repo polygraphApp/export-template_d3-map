@@ -12,11 +12,12 @@
 	 * width: import('svelte/store').Writable<number>
 	 * height: import('svelte/store').Writable<number>
 	 * config: import('svelte/store').Writable<{z?: () => number | string, r?: () => number | string}>
+	 * rGet: import('svelte/store').Writable<(feature: import('geojson').GeoJsonProperties) => number>
 	 * zGet: import('svelte/store').Writable<(feature: import('geojson').GeoJsonProperties) => number>
 	 * custom: import('svelte/store').Writable<Record<string, any>>
 	 * }} LayerCakeContext
 	 */
-	const { data, width, height, config, zGet, custom } = getContext('LayerCake');
+	const { data, width, height, config, zGet, rGet, custom } = getContext('LayerCake');
 
 	const { ctx } = getContext('canvas');
 
@@ -65,7 +66,14 @@
 		const coordinates = projectionFn([pointCoords[0], pointCoords[1]]);
 		if (coordinates === null) return;
 
-		$ctx.arc(coordinates[0], coordinates[1], radius, 0, 2 * Math.PI, false);
+		$ctx.arc(
+			coordinates[0],
+			coordinates[1],
+			$config.r ? $rGet(feature.properties) : radius,
+			0,
+			2 * Math.PI,
+			false
+		);
 		$ctx.fillStyle = $config.z ? $zGet(feature.properties) : fill;
 		$ctx.fill();
 		$ctx.lineWidth = strokeWidth;

@@ -121,6 +121,18 @@
 			name: 'Categorical dynamic point',
 			layers: [{ topodata: points, style: dynamicPointCategorical }]
 		},
+		{
+			name: 'Single color dynamic point (canvas)',
+			layers: [{ topodata: points, style: { ...dynamicPointSingleColor, renderer: 'canvas' } }]
+		},
+		{
+			name: 'Choropleth dynamic point (canvas)',
+			layers: [{ topodata: points, style: { ...dynamicPointChoropleth, renderer: 'canvas' } }]
+		},
+		{
+			name: 'Categorical dynamic point (canvas)',
+			layers: [{ topodata: points, style: { ...dynamicPointCategorical, renderer: 'canvas' } }]
+		},
 
 		// Multigeometry examples
 		{
