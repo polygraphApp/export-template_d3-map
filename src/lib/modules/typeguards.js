@@ -38,3 +38,12 @@ export function isChoropleth(style) {
 		'fillRange' in style.paint
 	);
 }
+
+/**
+ * Typeguard for dynamic point specifications
+ * @param {import('$lib/types.js').MapStyleConfig} style
+ * @returns {style is import('$lib/types.js').SimpleDynamicPointConfig | import('$lib/types.js').ChoroplethDynamicPointConfig}
+ */
+export function isDynamicPoint(style) {
+	return style.type === 'point' && style.paint && 'radiusKey' in style.paint;
+}

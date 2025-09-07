@@ -5,7 +5,7 @@
 	import MapDynamicPointSimple from '$lib/map-types/MapDynamicPointSimple.svelte';
 
 	import loadLayers from '$lib/modules/loadLayers.js';
-	import { isChoropleth } from '$lib/modules/typeguards.js';
+	import { isChoropleth, isDynamicPoint } from '$lib/modules/typeguards.js';
 
 	/** @typedef {import('topojson-specification').Topology} */
 	import usStates from './_data/topojson/us-states.json';
@@ -193,7 +193,7 @@
 		{#each allMapExamples as example}
 			<div class="item" data-label={example.name}>
 				{#each example.layers as { geojson, style }}
-					{#if style.type === 'point' && style.paint && 'radiusKey' in style.paint}
+					{#if isDynamicPoint(style)}
 						{#if isChoropleth(style)}
 							<MapDynamicPointChoropleth bounds={example.bounds} {geojson} {style} />
 						{:else}

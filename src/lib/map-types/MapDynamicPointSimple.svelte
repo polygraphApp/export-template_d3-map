@@ -1,15 +1,15 @@
 <script>
 	import { LayerCake, Svg, Canvas } from 'layercake';
 	import * as d3Geo from 'd3-geo';
-	// import { scaleThreshold } from 'd3-scale';
 
-	// import MapSvg from '../layercake-components/Map.svg.svelte';
-	// import MapCanvas from '../layercake-components/Map.canvas.svelte';
+	import MapPointSvg from '$lib/layercake-components/svg/MapPoint.svg.svelte';
+	import MapPointCanvas from '$lib/layercake-components/canvas/MapPoint.canvas.svelte';
 
-	/** @typedef {Object} Props
+	/**
+	 * @typedef {Object} Props
 	 * @property {import('geojson').FeatureCollection} geojson
-	 * @property {import('$lib/types.js').MapStyleConfig} style
-	 * @property {any[][]} bounds
+	 * @property {import('$lib/types.js').SimpleDynamicPointConfig} style
+	 * @property {[[number, number], [number, number]]} bounds
 	 */
 
 	/** @type {Props} */
@@ -28,14 +28,21 @@
 		.filter(properties => properties !== null);
 </script>
 
-<LayerCake position="absolute" data={geojson} {flatData} custom={{ bounds }} debug>
+<LayerCake
+	position="absolute"
+	r={style.paint.radiusKey}
+	data={geojson}
+	flatData={geojson.features.map(d => d.properties).filter(properties => properties !== null)}
+	custom={{ bounds }}
+	debug
+>
 	{#if style.renderer === 'svg'}
 		<Svg>
-			<!-- <MapSvg type={style.type} {projection} {...style.paint} /> -->
+			<MapPointSvg {projection} fixedAspectRatio={style.fixedAspectRatio} {...style.paint} />
 		</Svg>
 	{:else if style.renderer === 'canvas'}
-		<!-- <Canvas>
-			<MapCanvas type={style.type} {projection} {...style.paint} />
-		</Canvas> -->
+		<Canvas>
+			<MapPointCanvas {projection} fixedAspectRatio={style.fixedAspectRatio} {...style.paint} />
+		</Canvas>
 	{/if}
 </LayerCake>

@@ -1,43 +1,45 @@
 <script>
 	import { LayerCake, Svg, Canvas } from 'layercake';
 	import * as d3Geo from 'd3-geo';
-	// import { scaleThreshold } from 'd3-scale';
+	import { scaleThreshold, scaleOrdinal } from 'd3-scale';
 
-	// import MapSvg from '../layercake-components/Map.svg.svelte';
-	// import MapCanvas from '../layercake-components/Map.canvas.svelte';
+	import MapPointSvg from '$lib/layercake-components/svg/MapPoint.svg.svelte';
+	import MapPointCanvas from '$lib/layercake-components/canvas/MapPoint.canvas.svelte';
 
-	/** @typedef {Object} Props
+	/**
+	 * @typedef {Object} Props
 	 * @property {import('geojson').FeatureCollection} geojson
-	 * @property {import('$lib/types.js').MapStyleConfig} style
-	 * @property {any[][]} bounds
+	 * @property {import('$lib/types.js').ChoroplethDynamicPointConfig} style
+	 * @property {[[number, number], [number, number]]} bounds
 	 */
 
 	/** @type {Props} */
 	let { geojson, style, bounds } = $props();
 
-	let { paint } = $derived(style);
-
 	/** @type {() => import('d3-geo').GeoProjection} */
 	// @ts-ignore
 	const projection = d3Geo[style.projection];
-
-	/**
-	 * Create a flat array of objects that LayerCake can use to measure
-	 * extents for the color scale
-	 */
-	const flatData = geojson.features
-		.map(d => d.properties)
-		.filter(properties => properties !== null);
 </script>
 
-<LayerCake position="absolute" data={geojson} {flatData} custom={{ bounds }} debug>
+<LayerCake
+	position="absolute"
+	r={style.paint.radiusKey}
+	z={style.paint.fillKey}
+	zScale={style.paint.type === 'continuous' ? scaleThreshold() : scaleOrdinal()}
+	zDomain={style.paint.fillDomain}
+	zRange={style.paint.fillRange}
+	data={geojson}
+	flatData={geojson.features.map(d => d.properties).filter(properties => properties !== null)}
+	custom={{ bounds }}
+	debug
+>
 	{#if style.renderer === 'svg'}
 		<Svg>
-			<!-- <MapSvg type={style.type} {projection} {paint} /> -->
+			<MapPointSvg {projection} fixedAspectRatio={style.fixedAspectRatio} {...style.paint} />
 		</Svg>
 	{:else if style.renderer === 'canvas'}
-		<!-- <Canvas>
-			<MapCanvas type={style.type} {projection} {paint} />
-		</Canvas> -->
+		<Canvas>
+			<MapPointCanvas {projection} fixedAspectRatio={style.fixedAspectRatio} {...style.paint} />
+		</Canvas>
 	{/if}
 </LayerCake>
