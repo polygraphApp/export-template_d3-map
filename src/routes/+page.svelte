@@ -251,6 +251,14 @@
 		{
 			name: 'Categorical multiline (canvas)',
 			layers: [{ topodata: multilines, style: { ...multilineCategorical, renderer: 'canvas' } }]
+		},
+		// Multilayer
+		{
+			name: 'Multilayer',
+			layers: [
+				{ topodata: usStates, style: polygonChoropleth },
+				{ topodata: points, style: { ...pointSingleColor, renderer: 'canvas' } }
+			]
 		}
 
 		// @ts-ignore
