@@ -24,6 +24,8 @@
 <LayerCake
 	position="absolute"
 	r={style.paint.radiusKey}
+	rDomain={style.paint.radiusDomain}
+	rRange={style.paint.radiusRange}
 	z={style.paint.fillKey}
 	zScale={style.paint.type === 'continuous' ? scaleThreshold() : scaleOrdinal()}
 	zDomain={style.paint.fillDomain}

@@ -1,0 +1,11 @@
+{
+	"type": "point",
+	"renderer": "svg",
+	"projection": "geoAlbersUsa",
+	"paint": {
+		"fill": "#eb7200",
+		"radiusKey": "total_population",
+		"radiusDomain": [50000, 2400000],
+		"radiusRange": [2, 15]
+	}
+}

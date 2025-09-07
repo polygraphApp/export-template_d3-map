@@ -54,6 +54,12 @@
 	/** @typedef {import('$lib/types.js').MapStyleConfig} */
 	import multipointCategorical from './_data/style/multipoint-categorical.style.json';
 	/** @typedef {import('$lib/types.js').MapStyleConfig} */
+	import dynamicMultipointSingleColor from './_data/style/dynamic-multipoint-singlecolor.style.json';
+	/** @typedef {import('$lib/types.js').MapStyleConfig} */
+	import dynamicMultipointChoropleth from './_data/style/dynamic-multipoint-choropleth.style.json';
+	/** @typedef {import('$lib/types.js').MapStyleConfig} */
+	import dynamicMultipointCategorical from './_data/style/dynamic-multipoint-categorical.style.json';
+	/** @typedef {import('$lib/types.js').MapStyleConfig} */
 	import multilineChoropleth from './_data/style/multilinestrings-choropleth.style.json';
 	/** @typedef {import('$lib/types.js').MapStyleConfig} */
 	import multilineCategorical from './_data/style/multilinestrings-categorical.style.json';
@@ -164,6 +170,7 @@
 			]
 		},
 
+		// Multipoint
 		{
 			name: 'Single color multipoint',
 			layers: [{ topodata: multiPoints, style: pointSingleColor }]
@@ -188,6 +195,21 @@
 			name: 'Categorical multipoint (canvas)',
 			layers: [{ topodata: multiPoints, style: { ...multipointCategorical, renderer: 'canvas' } }]
 		},
+		// Dynamic multipoint
+		{
+			name: 'Single color dynamic multipoint',
+			layers: [{ topodata: multiPoints, style: dynamicMultipointSingleColor }]
+		},
+		{
+			name: 'Choropleth dynamic multipoint',
+			layers: [{ topodata: multiPoints, style: dynamicMultipointChoropleth }]
+		},
+		{
+			name: 'Categorical dynamic multipoint',
+			layers: [{ topodata: multiPoints, style: dynamicMultipointCategorical }]
+		},
+
+		// Multiline
 		{
 			name: 'Single color multiline',
 			layers: [{ topodata: multilines, style: lineSingleColor }]

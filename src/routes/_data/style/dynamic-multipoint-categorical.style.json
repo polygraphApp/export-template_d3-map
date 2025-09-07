@@ -1,0 +1,23 @@
+{
+	"type": "point",
+	"renderer": "svg",
+	"projection": "geoAlbersUsa",
+	"paint": {
+		"type": "categorical",
+		"radiusKey": "total_population",
+		"radiusDomain": [50000, 2400000],
+		"radiusRange": [2, 15],
+		"fillKey": "total_population",
+		"fillDomain": [
+			"Pacific Northwest Cities",
+			"Mountain Region Towns",
+			"Desert Communities",
+			"Plains Settlements",
+			"Central Hub Network",
+			"Coastal Metro Area",
+			"Southern Ports",
+			"Island Communities"
+		],
+		"fillRange": ["#4269d0", "#efb118", "#ff725c", "#6cc5b0", "#9498a0"]
+	}
+}
