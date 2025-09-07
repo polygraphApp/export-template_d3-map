@@ -1,11 +1,7 @@
 <script>
-	import MapSimple from '$lib/map-types/MapSimple.svelte';
-	import MapChoropleth from '$lib/map-types/MapChoropleth.svelte';
-	import MapDynamicPointChoropleth from '$lib/map-types/MapDynamicPointChoropleth.svelte';
-	import MapDynamicPointSimple from '$lib/map-types/MapDynamicPointSimple.svelte';
+	import MapD3 from '$lib/MapD3.svelte';
 
 	import loadConfig from '$lib/modules/loadConfig.js';
-	import { isChoropleth, isDynamicPoint } from '$lib/modules/typeguards.js';
 
 	/** @typedef {import('topojson-specification').Topology} */
 	import usStates from './_data/topojson/us-states.json';
@@ -269,21 +265,9 @@
 	<h1>Gallery</h1>
 
 	<div class="container">
-		{#each allMapExamples as example}
-			<div class="item" data-label={example.name}>
-				{#each example.layers as { geojson, style }}
-					{#if isDynamicPoint(style)}
-						{#if isChoropleth(style)}
-							<MapDynamicPointChoropleth bounds={example.bounds} {geojson} {style} />
-						{:else}
-							<MapDynamicPointSimple bounds={example.bounds} {geojson} {style} />
-						{/if}
-					{:else if isChoropleth(style)}
-						<MapChoropleth bounds={example.bounds} {geojson} {style} />
-					{:else}
-						<MapSimple bounds={example.bounds} {geojson} {style} />
-					{/if}
-				{/each}
+		{#each allMapExamples as config}
+			<div class="item" data-label={config.name}>
+				<MapD3 {config} />
 			</div>
 		{/each}
 	</div>
