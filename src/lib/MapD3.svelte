@@ -6,6 +6,13 @@
 
 	import { isChoropleth, isDynamicPoint } from '$lib/modules/typeguards.js';
 
+	/**
+	 * The map configuration
+	 * @typedef {Object} Props
+	 * @property {import('$lib/types.js').MapConfig} config - The map configuration
+	 */
+
+	/** @type {Props} */
 	let { config } = $props();
 </script>
 
