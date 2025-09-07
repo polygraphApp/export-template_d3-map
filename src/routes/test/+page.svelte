@@ -4,7 +4,7 @@
 	import MapDynamicPointChoropleth from '$lib/map-types/MapDynamicPointChoropleth.svelte';
 	import MapDynamicPointSimple from '$lib/map-types/MapDynamicPointSimple.svelte';
 
-	import loadLayers from '$lib/modules/loadLayers.js';
+	import loadConfig from '$lib/modules/loadConfig.js';
 	import { isChoropleth, isDynamicPoint } from '$lib/modules/typeguards.js';
 
 	/** @typedef {import('topojson-specification').Topology} */
@@ -262,7 +262,7 @@
 		}
 
 		// @ts-ignore
-	].map(loadLayers);
+	].map(loadConfig);
 </script>
 
 <div class="wrapper">

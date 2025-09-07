@@ -1,6 +1,6 @@
 import * as topojson from 'topojson-client';
 import { geoBounds } from 'd3-geo';
-import { rewindFeatureCollection } from '@placemarkio/geojson-rewind';
+import { rewindFeatureCollection, rewindFeature } from '@placemarkio/geojson-rewind';
 /**
  *
  * @param {{
@@ -13,7 +13,7 @@ import { rewindFeatureCollection } from '@placemarkio/geojson-rewind';
  * @returns {{name: string?, bounds: [[number, number], [number, number]], layers: Array<{ geojson: import('geojson').FeatureCollection, style: import('$lib/types.js').MapStyleConfig }>}}
  * }}
  */
-export default function loadLayers(config) {
+export default function loadConfig(config) {
 	const mapLayers = config.layers.map(({ topodata, style }) => {
 		const topoLayerName = Object.keys(topodata.objects)[0];
 		const geojson = topojson.feature(topodata, topodata.objects[topoLayerName]);
@@ -25,7 +25,10 @@ export default function loadLayers(config) {
 		 * }}
 		 */
 		return {
-			geojson: rewindFeatureCollection(geojson, 'd3'),
+			geojson:
+				geojson.type === 'FeatureCollection'
+					? rewindFeatureCollection(geojson, 'd3')
+					: rewindFeature(geojson, 'd3'),
 			style
 		};
 	});
