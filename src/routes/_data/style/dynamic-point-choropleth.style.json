@@ -4,7 +4,6 @@
 	"projection": "geoAlbersUsa",
 	"paint": {
 		"type": "continuous",
-		"outline": "#000",
 		"radius": 5,
 		"fillKey": "x_point",
 		"fillDomain": [

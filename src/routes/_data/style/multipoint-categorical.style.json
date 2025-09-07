@@ -4,7 +4,6 @@
 	"projection": "geoAlbersUsa",
 	"paint": {
 		"type": "categorical",
-		"outline": "#000",
 		"radius": 5,
 		"fillKey": "total_population",
 		"fillDomain": [
