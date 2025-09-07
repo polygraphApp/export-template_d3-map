@@ -2,13 +2,13 @@
 	import { LayerCake, Svg, Canvas } from 'layercake';
 	import * as d3Geo from 'd3-geo';
 
-	import MapPolygonSvg from '$lib/layercake-components/svg/MapPolygon.svg.svelte';
-	import MapLineSvg from '$lib/layercake-components/svg/MapLine.svg.svelte';
-	import MapPointSvg from '$lib/layercake-components/svg/MapPoint.svg.svelte';
+	import MapPolygonSvg from '$lib/components/svg/MapPolygon.svg.svelte';
+	import MapLineSvg from '$lib/components/svg/MapLine.svg.svelte';
+	import MapPointSvg from '$lib/components/svg/MapPoint.svg.svelte';
 
-	import MapPolygonCanvas from '$lib/layercake-components/canvas/MapPolygon.canvas.svelte';
-	import MapLineCanvas from '$lib/layercake-components/canvas/MapLine.canvas.svelte';
-	import MapPointCanvas from '$lib/layercake-components/canvas/MapPoint.canvas.svelte';
+	import MapPolygonCanvas from '$lib/components/canvas/MapPolygon.canvas.svelte';
+	import MapLineCanvas from '$lib/components/canvas/MapLine.canvas.svelte';
+	import MapPointCanvas from '$lib/components/canvas/MapPoint.canvas.svelte';
 
 	import { isPolygonType, isLineType, isPointType } from '$lib/modules/typeguards.js';
 

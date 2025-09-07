@@ -2,8 +2,8 @@
 	import { LayerCake, Svg, Canvas } from 'layercake';
 	import * as d3Geo from 'd3-geo';
 
-	import MapPointSvg from '$lib/layercake-components/svg/MapPoint.svg.svelte';
-	import MapPointCanvas from '$lib/layercake-components/canvas/MapPoint.canvas.svelte';
+	import MapPointSvg from '$lib/components/svg/MapPoint.svg.svelte';
+	import MapPointCanvas from '$lib/components/canvas/MapPoint.canvas.svelte';
 
 	/**
 	 * @typedef {Object} Props
