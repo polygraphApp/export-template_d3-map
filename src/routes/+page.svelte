@@ -113,14 +113,14 @@
 			name: 'Single color dynamic point',
 			layers: [{ topodata: points, style: dynamicPointSingleColor }]
 		},
-		// {
-		// 	name: 'Choropleth dynamic point',
-		// 	layers: [{ topodata: points, style: dynamicPointChoropleth }]
-		// },
-		// {
-		// 	name: 'Categorical dynamic point',
-		// 	layers: [{ topodata: points, style: dynamicPointCategorical }]
-		// },
+		{
+			name: 'Choropleth dynamic point',
+			layers: [{ topodata: points, style: dynamicPointChoropleth }]
+		},
+		{
+			name: 'Categorical dynamic point',
+			layers: [{ topodata: points, style: dynamicPointCategorical }]
+		},
 
 		// Multigeometry examples
 		{
@@ -214,7 +214,7 @@
 				{#each example.layers as { geojson, style }}
 					{#if isDynamicPoint(style)}
 						{#if isChoropleth(style)}
-							<!-- <MapDynamicPointChoropleth bounds={example.bounds} {geojson} {style} /> -->
+							<MapDynamicPointChoropleth bounds={example.bounds} {geojson} {style} />
 						{:else}
 							<MapDynamicPointSimple bounds={example.bounds} {geojson} {style} />
 						{/if}

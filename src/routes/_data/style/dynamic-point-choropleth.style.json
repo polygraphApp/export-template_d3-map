@@ -23,6 +23,9 @@
 			"#aadc32",
 			"#d8e219",
 			"#fde725"
-		]
+		],
+		"radiusKey": "x_point",
+		"radiusDomain": [-158, -65],
+		"radiusRange": [5, 20]
 	}
 }

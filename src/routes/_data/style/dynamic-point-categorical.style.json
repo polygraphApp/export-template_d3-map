@@ -72,6 +72,9 @@
 			"#97bbf5",
 			"#9c6b4e",
 			"#9498a0"
-		]
+		],
+		"radiusKey": "x_point",
+		"radiusDomain": [-158, -65],
+		"radiusRange": [5, 20]
 	}
 }
