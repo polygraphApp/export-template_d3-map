@@ -34,7 +34,8 @@
 		.map(d => d.properties)
 		.filter(d => d !== null && typeof d !== 'undefined')}
 	custom={{ bounds }}
-	poin
+	pointerEvents={style.renderer !== 'canvas'}
+	debug
 >
 	{#if style.renderer === 'svg'}
 		<Svg>

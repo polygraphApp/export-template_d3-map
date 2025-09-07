@@ -36,6 +36,8 @@
 	zRange={style.paint.fillRange}
 	flatData={geojson.features.map(d => d.properties).filter(d => d !== null && d !== undefined)}
 	custom={{ bounds }}
+	pointerEvents={style.renderer !== 'canvas'}
+	debug
 >
 	{#if style.renderer === 'svg'}
 		<Svg>

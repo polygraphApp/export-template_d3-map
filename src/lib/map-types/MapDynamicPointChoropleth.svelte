@@ -33,6 +33,7 @@
 	data={geojson}
 	flatData={geojson.features.map(d => d.properties).filter(properties => properties !== null)}
 	custom={{ bounds }}
+	pointerEvents={style.renderer !== 'canvas'}
 	debug
 >
 	{#if style.renderer === 'svg'}
