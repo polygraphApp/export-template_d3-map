@@ -208,6 +208,24 @@
 			name: 'Categorical dynamic multipoint',
 			layers: [{ topodata: multiPoints, style: dynamicMultipointCategorical }]
 		},
+		{
+			name: 'Single color dynamic multipoint (canvas)',
+			layers: [
+				{ topodata: multiPoints, style: { ...dynamicMultipointSingleColor, renderer: 'canvas' } }
+			]
+		},
+		{
+			name: 'Choropleth dynamic multipoint (canvas)',
+			layers: [
+				{ topodata: multiPoints, style: { ...dynamicMultipointChoropleth, renderer: 'canvas' } }
+			]
+		},
+		{
+			name: 'Categorical dynamic multipoint (canvas)',
+			layers: [
+				{ topodata: multiPoints, style: { ...dynamicMultipointCategorical, renderer: 'canvas' } }
+			]
+		},
 
 		// Multiline
 		{
