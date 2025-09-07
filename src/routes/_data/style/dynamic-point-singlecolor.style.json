@@ -1,0 +1,11 @@
+{
+	"type": "point",
+	"renderer": "svg",
+	"projection": "geoAlbersUsa",
+	"paint": {
+		"fill": "#eb7200",
+		"radiusKey": "x_point",
+		"radiusDomain": [-158, -65],
+		"radiusRange": [5, 20]
+	}
+}

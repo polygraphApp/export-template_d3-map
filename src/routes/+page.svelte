@@ -40,6 +40,12 @@
 	/** @typedef {import('$lib/types.js').MapStyleConfig} */
 	import pointCategorical from './_data/style/point-categorical.style.json';
 	/** @typedef {import('$lib/types.js').MapStyleConfig} */
+	import dynamicPointSingleColor from './_data/style/dynamic-point-singlecolor.style.json';
+	/** @typedef {import('$lib/types.js').MapStyleConfig} */
+	import dynamicPointChoropleth from './_data/style/dynamic-point-choropleth.style.json';
+	/** @typedef {import('$lib/types.js').MapStyleConfig} */
+	import dynamicPointCategorical from './_data/style/dynamic-point-categorical.style.json';
+	/** @typedef {import('$lib/types.js').MapStyleConfig} */
 	import multipolygonChoropleth from './_data/style/multipolygon-choropleth.style.json';
 	/** @typedef {import('$lib/types.js').MapStyleConfig} */
 	import multipolygonCategorical from './_data/style/multipolygon-categorical.style.json';
@@ -102,6 +108,19 @@
 			name: 'Categorical point (Canvas)',
 			layers: [{ topodata: points, style: { ...pointCategorical, renderer: 'canvas' } }]
 		},
+		// Dynamic points
+		{
+			name: 'Single color dynamic point',
+			layers: [{ topodata: points, style: dynamicPointSingleColor }]
+		},
+		// {
+		// 	name: 'Choropleth dynamic point',
+		// 	layers: [{ topodata: points, style: dynamicPointChoropleth }]
+		// },
+		// {
+		// 	name: 'Categorical dynamic point',
+		// 	layers: [{ topodata: points, style: dynamicPointCategorical }]
+		// },
 
 		// Multigeometry examples
 		{
@@ -195,7 +214,7 @@
 				{#each example.layers as { geojson, style }}
 					{#if isDynamicPoint(style)}
 						{#if isChoropleth(style)}
-							<MapDynamicPointChoropleth bounds={example.bounds} {geojson} {style} />
+							<!-- <MapDynamicPointChoropleth bounds={example.bounds} {geojson} {style} /> -->
 						{:else}
 							<MapDynamicPointSimple bounds={example.bounds} {geojson} {style} />
 						{/if}

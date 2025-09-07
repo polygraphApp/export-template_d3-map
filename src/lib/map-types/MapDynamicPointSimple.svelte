@@ -18,19 +18,13 @@
 	/** @type {() => import('d3-geo').GeoProjection} */
 	// @ts-ignore
 	const projection = d3Geo[style.projection];
-
-	/**
-	 * Create a flat array of objects that LayerCake can use to measure
-	 * extents for the color scale
-	 */
-	const flatData = geojson.features
-		.map(d => d.properties)
-		.filter(properties => properties !== null);
 </script>
 
 <LayerCake
 	position="absolute"
 	r={style.paint.radiusKey}
+	rDomain={style.paint.radiusDomain}
+	rRange={style.paint.radiusRange}
 	data={geojson}
 	flatData={geojson.features.map(d => d.properties).filter(properties => properties !== null)}
 	custom={{ bounds }}

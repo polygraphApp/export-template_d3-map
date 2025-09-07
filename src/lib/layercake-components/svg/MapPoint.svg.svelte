@@ -15,7 +15,7 @@
 	 * custom: import('svelte/store').Writable<Record<string, any>>
 	 * }} LayerCakeContext
 	 */
-	const { data, width, height, zGet, custom, config } = getContext('LayerCake');
+	const { data, width, height, rGet, zGet, custom, config } = getContext('LayerCake');
 
 	/**
 	 * @typedef {import('$lib/types.js').PointConfig} Props
@@ -72,7 +72,7 @@
 			stroke-opacity={strokeOpacity}
 			cx={coords[0]}
 			cy={coords[1]}
-			r={radius}
+			r={$config.r ? $rGet(feature.properties) : radius}
 			role="tooltip"
 		></circle>
 	{/if}

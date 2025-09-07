@@ -119,7 +119,7 @@
  * @property {number} [strokeWidth=1] - The width of the stroke for the point features.
  * @property {string} radiusKey - The key to use for the radius of the point features.
  * @property {Array<any>} radiusDomain - The domain for the color scale.
- * @property {Array<any>} radiusRange - The range for the color scale.
+ * @property {Array<number>} radiusRange - The range for the color scale.
  */
 /**
  * @typedef {Object} ChoroplethDynamicPoint - a point with dynamic radius
@@ -130,9 +130,9 @@
  * @property {number} [fillOpacity=1] - The opacity of the fill color.
  * @property {string} [stroke='#000'] - The stroke color for the point features.
  * @property {number} [strokeWidth=1] - The width of the stroke for the point features.
- * @property {number} radiusKey - The key to use for the radius of the point features.
+ * @property {string} radiusKey - The key to use for the radius of the point features.
  * @property {Array<any>} radiusDomain - The domain for the color scale.
- * @property {Array<any>} radiusRange - The range for the color scale.
+ * @property {Array<number>} radiusRange - The range for the color scale.
  */
 
 /**
