@@ -11,7 +11,7 @@
 	 * data: import('svelte/store').Writable<import('geojson').FeatureCollection<import('geojson').Polygon|import('geojson').MultiPolygon>>
 	 * width: import('svelte/store').Writable<number>
 	 * height: import('svelte/store').Writable<number>
-	 * config: import('svelte/store').Writable<{z?: () => number}>
+	 * config: import('svelte/store').Writable<{z?: () => number | string}>
 	 * zGet: import('svelte/store').Writable<(feature: import('geojson').GeoJsonProperties) => number>
 	 * custom: import('svelte/store').Writable<Record<string, any>>
 	 * }} LayerCakeContext

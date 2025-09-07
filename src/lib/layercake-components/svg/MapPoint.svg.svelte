@@ -10,7 +10,8 @@
 	 * data: import('svelte/store').Writable<import('geojson').FeatureCollection<import('geojson').Point|import('geojson').MultiPoint>>
 	 * width: import('svelte/store').Writable<number>
 	 * height: import('svelte/store').Writable<number>
-	 * config: import('svelte/store').Writable<{z?: () => number}>
+	 * config: import('svelte/store').Writable<{z?: () => number | string, r?: () => number | string}>
+	 * rGet: import('svelte/store').Writable<(feature: import('geojson').GeoJsonProperties) => number>
 	 * zGet: import('svelte/store').Writable<(feature: import('geojson').GeoJsonProperties) => number>
 	 * custom: import('svelte/store').Writable<Record<string, any>>
 	 * }} LayerCakeContext
