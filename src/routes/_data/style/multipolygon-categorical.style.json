@@ -1,0 +1,18 @@
+{
+	"type": "polygon",
+	"renderer": "svg",
+	"projection": "geoAlbersUsa",
+	"paint": {
+		"fillKey": "density",
+		"fillDomain": [
+			"Northern Region",
+			"Central West",
+			"Mountain Territory",
+			"Desert Plains",
+			"Coastal Valleys",
+			"Southern Lowlands"
+		],
+		"fillRange": ["#4269d0", "#efb118", "#ff725c", "#6cc5b0", "#9498a0"],
+		"stroke": "#000"
+	}
+}

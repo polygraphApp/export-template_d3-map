@@ -1,0 +1,21 @@
+{
+	"type": "line",
+	"renderer": "svg",
+	"projection": "geoMercator",
+	"paint": {
+		"type": "categorical",
+		"strokeWidth": 2,
+		"fillKey": "traffic_volume",
+		"fillDomain": [
+			"Interstate Highway System",
+			"State Route Network",
+			"Railway Corridor",
+			"River System",
+			"Pipeline Network",
+			"Power Transmission",
+			"Fiber Optic Network",
+			"County Roads"
+		],
+		"fillRange": ["#4269d0", "#efb118", "#ff725c", "#6cc5b0", "#9498a0"]
+	}
+}

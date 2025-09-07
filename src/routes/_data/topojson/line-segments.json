@@ -4,56 +4,256 @@
 		"query_data": {
 			"type": "GeometryCollection",
 			"geometries": [
-				{ "type": "LineString", "arcs": [0], "properties": { "x_point": -158.109973806952 } },
-				{ "type": "LineString", "arcs": [1], "properties": { "x_point": -151.5999450686261 } },
-				{ "type": "LineString", "arcs": [2], "properties": { "x_point": -120.60525446420138 } },
-				{ "type": "LineString", "arcs": [3], "properties": { "x_point": -120.59282076250311 } },
-				{ "type": "LineString", "arcs": [4], "properties": { "x_point": -119.66387083286612 } },
-				{ "type": "LineString", "arcs": [5], "properties": { "x_point": -116.65525035188143 } },
-				{ "type": "LineString", "arcs": [6], "properties": { "x_point": -114.65941491216283 } },
-				{ "type": "LineString", "arcs": [7], "properties": { "x_point": -111.67824995562988 } },
-				{ "type": "LineString", "arcs": [8], "properties": { "x_point": -111.66444375557998 } },
-				{ "type": "LineString", "arcs": [9], "properties": { "x_point": -109.64510184154685 } },
-				{ "type": "LineString", "arcs": [10], "properties": { "x_point": -107.55139588124844 } },
-				{ "type": "LineString", "arcs": [11], "properties": { "x_point": -106.1084443092296 } },
-				{ "type": "LineString", "arcs": [12], "properties": { "x_point": -105.54782078686765 } },
-				{ "type": "LineString", "arcs": [13], "properties": { "x_point": -100.46933828436435 } },
-				{ "type": "LineString", "arcs": [14], "properties": { "x_point": -100.23045746488138 } },
-				{ "type": "LineString", "arcs": [15], "properties": { "x_point": -99.81086336221392 } },
-				{ "type": "LineString", "arcs": [16], "properties": { "x_point": -99.31709151542711 } },
-				{ "type": "LineString", "arcs": [17], "properties": { "x_point": -98.38015544852193 } },
-				{ "type": "LineString", "arcs": [18], "properties": { "x_point": -97.5082383802823 } },
-				{ "type": "LineString", "arcs": [19], "properties": { "x_point": -94.19831440683028 } },
-				{ "type": "LineString", "arcs": [20], "properties": { "x_point": -93.500088988769 } },
-				{ "type": "LineString", "arcs": [21], "properties": { "x_point": -92.47741248665089 } },
-				{ "type": "LineString", "arcs": [22], "properties": { "x_point": -92.43839878380723 } },
-				{ "type": "LineString", "arcs": [23], "properties": { "x_point": -91.81423619447341 } },
-				{ "type": "LineString", "arcs": [24], "properties": { "x_point": -89.7329466874319 } },
-				{ "type": "LineString", "arcs": [25], "properties": { "x_point": -89.65328791585046 } },
-				{ "type": "LineString", "arcs": [26], "properties": { "x_point": -89.1486340734965 } },
-				{ "type": "LineString", "arcs": [27], "properties": { "x_point": -86.84452098467384 } },
-				{ "type": "LineString", "arcs": [28], "properties": { "x_point": -86.34219745978409 } },
-				{ "type": "LineString", "arcs": [29], "properties": { "x_point": -86.28184761544914 } },
-				{ "type": "LineString", "arcs": [30], "properties": { "x_point": -85.73096487575557 } },
-				{ "type": "LineString", "arcs": [31], "properties": { "x_point": -85.29053015266086 } },
-				{ "type": "LineString", "arcs": [32], "properties": { "x_point": -83.42724626295399 } },
-				{ "type": "LineString", "arcs": [33], "properties": { "x_point": -82.70937967629845 } },
-				{ "type": "LineString", "arcs": [34], "properties": { "x_point": -82.54411004542992 } },
-				{ "type": "LineString", "arcs": [35], "properties": { "x_point": -80.86458737688939 } },
-				{ "type": "LineString", "arcs": [36], "properties": { "x_point": -80.6137050217965 } },
-				{ "type": "LineString", "arcs": [37], "properties": { "x_point": -79.13088556539782 } },
-				{ "type": "LineString", "arcs": [38], "properties": { "x_point": -78.66635637631845 } },
-				{ "type": "LineString", "arcs": [39], "properties": { "x_point": -77.83894482806373 } },
-				{ "type": "LineString", "arcs": [40], "properties": { "x_point": -77.01630244762735 } },
-				{ "type": "LineString", "arcs": [41], "properties": { "x_point": -76.68717733488057 } },
-				{ "type": "LineString", "arcs": [42], "properties": { "x_point": -75.59641664465386 } },
-				{ "type": "LineString", "arcs": [43], "properties": { "x_point": -75.45249257538498 } },
-				{ "type": "LineString", "arcs": [44], "properties": { "x_point": -74.65595624328397 } },
-				{ "type": "LineString", "arcs": [45], "properties": { "x_point": -72.73825767198747 } },
-				{ "type": "LineString", "arcs": [46], "properties": { "x_point": -72.66265178121964 } },
-				{ "type": "LineString", "arcs": [47], "properties": { "x_point": -71.57124303890537 } },
-				{ "type": "LineString", "arcs": [48], "properties": { "x_point": -71.5247235408396 } },
-				{ "type": "LineString", "arcs": [49], "properties": { "x_point": -71.50397225719996 } }
+				{
+					"type": "LineString",
+					"arcs": [0],
+					"properties": { "x_point": -158.109973806952, "name": "Hawaii" }
+				},
+				{
+					"type": "LineString",
+					"arcs": [1],
+					"properties": { "x_point": -151.5999450686261, "name": "Alaska" }
+				},
+				{
+					"type": "LineString",
+					"arcs": [2],
+					"properties": { "x_point": -120.60525446420138, "name": "California" }
+				},
+				{
+					"type": "LineString",
+					"arcs": [3],
+					"properties": { "x_point": -120.59282076250311, "name": "Washington" }
+				},
+				{
+					"type": "LineString",
+					"arcs": [4],
+					"properties": { "x_point": -119.66387083286612, "name": "Nevada" }
+				},
+				{
+					"type": "LineString",
+					"arcs": [5],
+					"properties": { "x_point": -116.65525035188143, "name": "Idaho" }
+				},
+				{
+					"type": "LineString",
+					"arcs": [6],
+					"properties": { "x_point": -114.65941491216283, "name": "Montana" }
+				},
+				{
+					"type": "LineString",
+					"arcs": [7],
+					"properties": { "x_point": -111.67824995562988, "name": "Utah" }
+				},
+				{
+					"type": "LineString",
+					"arcs": [8],
+					"properties": { "x_point": -111.66444375557998, "name": "Arizona" }
+				},
+				{
+					"type": "LineString",
+					"arcs": [9],
+					"properties": { "x_point": -109.64510184154685, "name": "North Dakota" }
+				},
+				{
+					"type": "LineString",
+					"arcs": [10],
+					"properties": { "x_point": -107.55139588124844, "name": "Wyoming" }
+				},
+				{
+					"type": "LineString",
+					"arcs": [11],
+					"properties": { "x_point": -106.1084443092296, "name": "New Mexico" }
+				},
+				{
+					"type": "LineString",
+					"arcs": [12],
+					"properties": { "x_point": -105.54782078686765, "name": "Colorado" }
+				},
+				{
+					"type": "LineString",
+					"arcs": [13],
+					"properties": { "x_point": -100.46933828436435, "name": "South Dakota" }
+				},
+				{
+					"type": "LineString",
+					"arcs": [14],
+					"properties": { "x_point": -100.23045746488138, "name": "Nebraska" }
+				},
+				{
+					"type": "LineString",
+					"arcs": [15],
+					"properties": { "x_point": -99.81086336221392, "name": "Kansas" }
+				},
+				{
+					"type": "LineString",
+					"arcs": [16],
+					"properties": { "x_point": -99.31709151542711, "name": "Texas" }
+				},
+				{
+					"type": "LineString",
+					"arcs": [17],
+					"properties": { "x_point": -98.38015544852193, "name": "Oklahoma" }
+				},
+				{
+					"type": "LineString",
+					"arcs": [18],
+					"properties": { "x_point": -97.5082383802823, "name": "Iowa" }
+				},
+				{
+					"type": "LineString",
+					"arcs": [19],
+					"properties": { "x_point": -94.19831440683028, "name": "Minnesota" }
+				},
+				{
+					"type": "LineString",
+					"arcs": [20],
+					"properties": { "x_point": -93.500088988769, "name": "Wisconsin" }
+				},
+				{
+					"type": "LineString",
+					"arcs": [21],
+					"properties": { "x_point": -92.47741248665089, "name": "Missouri" }
+				},
+				{
+					"type": "LineString",
+					"arcs": [22],
+					"properties": { "x_point": -92.43839878380723, "name": "Arkansas" }
+				},
+				{
+					"type": "LineString",
+					"arcs": [23],
+					"properties": { "x_point": -91.81423619447341, "name": "Louisiana" }
+				},
+				{
+					"type": "LineString",
+					"arcs": [24],
+					"properties": { "x_point": -89.7329466874319, "name": "Michigan" }
+				},
+				{
+					"type": "LineString",
+					"arcs": [25],
+					"properties": { "x_point": -89.65328791585046, "name": "Mississippi" }
+				},
+				{
+					"type": "LineString",
+					"arcs": [26],
+					"properties": { "x_point": -89.1486340734965, "name": "Illinois" }
+				},
+				{
+					"type": "LineString",
+					"arcs": [27],
+					"properties": { "x_point": -86.84452098467384, "name": "Alabama" }
+				},
+				{
+					"type": "LineString",
+					"arcs": [28],
+					"properties": { "x_point": -86.34219745978409, "name": "Tennessee" }
+				},
+				{
+					"type": "LineString",
+					"arcs": [29],
+					"properties": { "x_point": -86.28184761544914, "name": "Indiana" }
+				},
+				{
+					"type": "LineString",
+					"arcs": [30],
+					"properties": { "x_point": -85.73096487575557, "name": "Michigan" }
+				},
+				{
+					"type": "LineString",
+					"arcs": [31],
+					"properties": { "x_point": -85.29053015266086, "name": "Kentucky" }
+				},
+				{
+					"type": "LineString",
+					"arcs": [32],
+					"properties": { "x_point": -83.42724626295399, "name": "Georgia" }
+				},
+				{
+					"type": "LineString",
+					"arcs": [33],
+					"properties": { "x_point": -82.70937967629845, "name": "Ohio" }
+				},
+				{
+					"type": "LineString",
+					"arcs": [34],
+					"properties": { "x_point": -82.54411004542992, "name": "Florida" }
+				},
+				{
+					"type": "LineString",
+					"arcs": [35],
+					"properties": { "x_point": -80.86458737688939, "name": "South Carolina" }
+				},
+				{
+					"type": "LineString",
+					"arcs": [36],
+					"properties": { "x_point": -80.6137050217965, "name": "West Virginia" }
+				},
+				{
+					"type": "LineString",
+					"arcs": [37],
+					"properties": { "x_point": -79.13088556539782, "name": "North Carolina" }
+				},
+				{
+					"type": "LineString",
+					"arcs": [38],
+					"properties": { "x_point": -78.66635637631845, "name": "Virginia" }
+				},
+				{
+					"type": "LineString",
+					"arcs": [39],
+					"properties": { "x_point": -77.83894482806373, "name": "Pennsylvania" }
+				},
+				{
+					"type": "LineString",
+					"arcs": [40],
+					"properties": { "x_point": -77.01630244762735, "name": "Maryland" }
+				},
+				{
+					"type": "LineString",
+					"arcs": [41],
+					"properties": { "x_point": -76.68717733488057, "name": "Delaware" }
+				},
+				{
+					"type": "LineString",
+					"arcs": [42],
+					"properties": { "x_point": -75.59641664465386, "name": "New York" }
+				},
+				{
+					"type": "LineString",
+					"arcs": [43],
+					"properties": { "x_point": -75.45249257538498, "name": "New Jersey" }
+				},
+				{
+					"type": "LineString",
+					"arcs": [44],
+					"properties": { "x_point": -74.65595624328397, "name": "Connecticut" }
+				},
+				{
+					"type": "LineString",
+					"arcs": [45],
+					"properties": { "x_point": -72.73825767198747, "name": "Maine" }
+				},
+				{
+					"type": "LineString",
+					"arcs": [46],
+					"properties": { "x_point": -72.66265178121964, "name": "Vermont" }
+				},
+				{
+					"type": "LineString",
+					"arcs": [47],
+					"properties": { "x_point": -71.57124303890537, "name": "New Hampshire" }
+				},
+				{
+					"type": "LineString",
+					"arcs": [48],
+					"properties": { "x_point": -71.5247235408396, "name": "Rhode Island" }
+				},
+				{
+					"type": "LineString",
+					"arcs": [49],
+					"properties": { "x_point": -71.50397225719996, "name": "Massachusetts" }
+				}
 			]
 		}
 	},
