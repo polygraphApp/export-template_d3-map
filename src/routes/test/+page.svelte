@@ -4,61 +4,61 @@
 	import loadConfig from '$lib/modules/loadConfig.js';
 
 	/** @typedef {import('topojson-specification').Topology} */
-	import usStates from './_data/topojson/us-states.json';
+	import usStates from '../../data/topojson/us-states.json';
 	/** @typedef {import('topojson-specification').Topology} */
-	import lineSegments from './_data/topojson/line-segments.json';
+	import lineSegments from '../../data/topojson/line-segments.json';
 	/** @typedef {import('topojson-specification').Topology} */
-	import points from './_data/topojson/points.json';
+	import points from '../../data/topojson/points.json';
 
 	/** @typedef {import('topojson-specification').Topology} */
-	import multiPolygons from './_data/topojson/multipolygons.json';
+	import multiPolygons from '../../data/topojson/multipolygons.json';
 	/** @typedef {import('topojson-specification').Topology} */
-	import multiPoints from './_data/topojson/multipoints.json';
+	import multiPoints from '../../data/topojson/multipoints.json';
 	/** @typedef {import('topojson-specification').Topology} */
-	import multilines from './_data/topojson/multilinestrings.json';
+	import multilines from '../../data/topojson/multilinestrings.json';
 
 	/** @typedef {import('$lib/types.js').MapStyleConfig} */
-	import polygonSingleColor from './_data/style/polygon-singlecolor.style.json';
+	import polygonSingleColor from '../../data/style/polygon-singlecolor.style.json';
 	/** @typedef {import('$lib/types.js').MapStyleConfig} */
-	import polygonChoropleth from './_data/style/polygon-choropleth.style.json';
+	import polygonChoropleth from '../../data/style/polygon-choropleth.style.json';
 	/** @typedef {import('$lib/types.js').MapStyleConfig} */
-	import polygonCategorical from './_data/style/polygon-categorical.style.json';
+	import polygonCategorical from '../../data/style/polygon-categorical.style.json';
 	/** @typedef {import('$lib/types.js').MapStyleConfig} */
-	import lineSingleColor from './_data/style/linesegments-singlecolor.style.json';
+	import lineSingleColor from '../../data/style/linesegments-singlecolor.style.json';
 	/** @typedef {import('$lib/types.js').MapStyleConfig} */
-	import lineChoropleth from './_data/style/linesegments-choropleth.style.json';
+	import lineChoropleth from '../../data/style/linesegments-choropleth.style.json';
 	/** @typedef {import('$lib/types.js').MapStyleConfig} */
-	import lineCategorical from './_data/style/linesegments-categorical.style.json';
+	import lineCategorical from '../../data/style/linesegments-categorical.style.json';
 	/** @typedef {import('$lib/types.js').MapStyleConfig} */
-	import pointSingleColor from './_data/style/point-singlecolor.style.json';
+	import pointSingleColor from '../../data/style/point-singlecolor.style.json';
 	/** @typedef {import('$lib/types.js').MapStyleConfig} */
-	import pointChoropleth from './_data/style/point-choropleth.style.json';
+	import pointChoropleth from '../../data/style/point-choropleth.style.json';
 	/** @typedef {import('$lib/types.js').MapStyleConfig} */
-	import pointCategorical from './_data/style/point-categorical.style.json';
+	import pointCategorical from '../../data/style/point-categorical.style.json';
 	/** @typedef {import('$lib/types.js').MapStyleConfig} */
-	import dynamicPointSingleColor from './_data/style/dynamic-point-singlecolor.style.json';
+	import dynamicPointSingleColor from '../../data/style/dynamic-point-singlecolor.style.json';
 	/** @typedef {import('$lib/types.js').MapStyleConfig} */
-	import dynamicPointChoropleth from './_data/style/dynamic-point-choropleth.style.json';
+	import dynamicPointChoropleth from '../../data/style/dynamic-point-choropleth.style.json';
 	/** @typedef {import('$lib/types.js').MapStyleConfig} */
-	import dynamicPointCategorical from './_data/style/dynamic-point-categorical.style.json';
+	import dynamicPointCategorical from '../../data/style/dynamic-point-categorical.style.json';
 	/** @typedef {import('$lib/types.js').MapStyleConfig} */
-	import multipolygonChoropleth from './_data/style/multipolygon-choropleth.style.json';
+	import multipolygonChoropleth from '../../data/style/multipolygon-choropleth.style.json';
 	/** @typedef {import('$lib/types.js').MapStyleConfig} */
-	import multipolygonCategorical from './_data/style/multipolygon-categorical.style.json';
+	import multipolygonCategorical from '../../data/style/multipolygon-categorical.style.json';
 	/** @typedef {import('$lib/types.js').MapStyleConfig} */
-	import multipointChoropleth from './_data/style/multipoint-choropleth.style.json';
+	import multipointChoropleth from '../../data/style/multipoint-choropleth.style.json';
 	/** @typedef {import('$lib/types.js').MapStyleConfig} */
-	import multipointCategorical from './_data/style/multipoint-categorical.style.json';
+	import multipointCategorical from '../../data/style/multipoint-categorical.style.json';
 	/** @typedef {import('$lib/types.js').MapStyleConfig} */
-	import dynamicMultipointSingleColor from './_data/style/dynamic-multipoint-singlecolor.style.json';
+	import dynamicMultipointSingleColor from '../../data/style/dynamic-multipoint-singlecolor.style.json';
 	/** @typedef {import('$lib/types.js').MapStyleConfig} */
-	import dynamicMultipointChoropleth from './_data/style/dynamic-multipoint-choropleth.style.json';
+	import dynamicMultipointChoropleth from '../../data/style/dynamic-multipoint-choropleth.style.json';
 	/** @typedef {import('$lib/types.js').MapStyleConfig} */
-	import dynamicMultipointCategorical from './_data/style/dynamic-multipoint-categorical.style.json';
+	import dynamicMultipointCategorical from '../../data/style/dynamic-multipoint-categorical.style.json';
 	/** @typedef {import('$lib/types.js').MapStyleConfig} */
-	import multilineChoropleth from './_data/style/multilinestrings-choropleth.style.json';
+	import multilineChoropleth from '../../data/style/multilinestrings-choropleth.style.json';
 	/** @typedef {import('$lib/types.js').MapStyleConfig} */
-	import multilineCategorical from './_data/style/multilinestrings-categorical.style.json';
+	import multilineCategorical from '../../data/style/multilinestrings-categorical.style.json';
 
 	const allMapExamples = [
 		// Polygons

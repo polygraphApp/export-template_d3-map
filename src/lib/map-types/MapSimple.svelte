@@ -34,6 +34,7 @@
 		.map(d => d.properties)
 		.filter(d => d !== null && typeof d !== 'undefined')}
 	custom={{ bounds }}
+	poin
 >
 	{#if style.renderer === 'svg'}
 		<Svg>
