@@ -8,13 +8,13 @@
 /**
  * @typedef {Object} GeoLayerConfig
  * @property {import('geojson').FeatureCollection} geojson - The GeoJSON data for the layer
- * @property {import('$lib/types.js').MapStyleConfig} style - The style configuration for the layer
+ * @property {MapStyleConfig} style - The style configuration for the layer
  */
 
 /**
  * @typedef {Object} TopoLayerConfig
  * @property {import('topojson-specification').Topology} topodata - The TopoJSON data for the layer
- * @property {import('$lib/types.js').MapStyleConfig} style - The style configuration for the layer
+ * @property {MapStyleConfig} style - The style configuration for the layer
  */
 
 /**
