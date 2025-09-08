@@ -1,15 +1,19 @@
 <script>
 	import MapD3 from '$lib/MapD3.svelte';
 
-	/** @typedef {import('topojson-specification').Topology} */
-	import usStates from '../data/topojson/us-states.json';
-	/** @typedef {import('topojson-specification').Topology} */
-	import points from '../data/topojson/points.json';
+	import usStatesRaw from '../data/topojson/us-states.json';
+	import pointsRaw from '../data/topojson/points.json';
+	import pointSingleColorRaw from '../data/style/point-singlecolor.style.json';
+	import polygonChoroplethRaw from '../data/style/polygon-choropleth.style.json';
 
-	/** @typedef {import('$lib/types.js').MapStyleConfig} */
-	import pointSingleColor from '../data/style/point-singlecolor.style.json';
-	/** @typedef {import('$lib/types.js').MapStyleConfig} */
-	import polygonChoropleth from '../data/style/polygon-choropleth.style.json';
+	/** @type {import('topojson-specification').Topology} */
+	const usStates = usStatesRaw;
+	/** @type {import('topojson-specification').Topology} */
+	const points = pointsRaw;
+	/** @type {import('$lib/types.js').MapStyleConfig} */
+	const pointSingleColor = pointSingleColorRaw;
+	/** @type {import('$lib/types.js').MapStyleConfig} */
+	const polygonChoropleth = polygonChoroplethRaw;
 
 	import loadConfig from '$lib/modules/loadConfig.js';
 
