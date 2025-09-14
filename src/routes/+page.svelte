@@ -1,8 +1,8 @@
 <script>
 	import MapD3 from '$lib/MapD3.svelte';
 
-	import usStatesRaw from '../data/topojson/us-states.json';
-	import pointsRaw from '../data/topojson/points.json';
+	import usStatesRaw from '../data/topojson/us-states.topo.json';
+	import pointsRaw from '../data/topojson/points.topo.json';
 	import pointSingleColorRaw from '../data/style/point-singlecolor.style.json';
 	import polygonChoroplethRaw from '../data/style/polygon-choropleth.style.json';
 

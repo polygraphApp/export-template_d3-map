@@ -4,18 +4,18 @@
 	import loadConfig from '$lib/modules/loadConfig.js';
 
 	/** @typedef {import('topojson-specification').Topology} */
-	import usStates from '../../data/topojson/us-states.json';
+	import usStates from '../../data/topojson/us-states.topo.json';
 	/** @typedef {import('topojson-specification').Topology} */
-	import lineSegments from '../../data/topojson/line-segments.json';
+	import lineSegments from '../../data/topojson/line-segments.topo.json';
 	/** @typedef {import('topojson-specification').Topology} */
-	import points from '../../data/topojson/points.json';
+	import points from '../../data/topojson/points.topo.json';
 
 	/** @typedef {import('topojson-specification').Topology} */
-	import multiPolygons from '../../data/topojson/multipolygons.json';
+	import multiPolygons from '../../data/topojson/multipolygons.topo.json';
 	/** @typedef {import('topojson-specification').Topology} */
-	import multiPoints from '../../data/topojson/multipoints.json';
+	import multiPoints from '../../data/topojson/multipoints.topo.json';
 	/** @typedef {import('topojson-specification').Topology} */
-	import multilines from '../../data/topojson/multilinestrings.json';
+	import multilines from '../../data/topojson/multilinestrings.topo.json';
 
 	/** @typedef {import('$lib/types.js').MapStyleConfig} */
 	import polygonSingleColor from '../../data/style/polygon-singlecolor.style.json';
